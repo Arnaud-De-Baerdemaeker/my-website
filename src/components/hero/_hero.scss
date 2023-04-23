@@ -1,0 +1,281 @@
+/* HERO */
+.hero {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+
+	&__container {
+		position: absolute;
+		background: {
+			attachment: fixed;
+			repeat: no-repeat;
+			size: cover;
+		}
+		width: inherit;
+		height: inherit;
+	}
+
+	&__background {
+		background-position-x: 50%;
+		animation: {
+			duration: 10s;
+			timing-function: linear;
+		}
+
+		&--1 {
+			@extend .hero__background;
+			background-image: url("https://live.staticflickr.com/65535/52507757779_cfd3ca9931_o.jpg");
+			animation-name: fadeInAndOut1;
+		}
+
+		&--2 {
+			@extend .hero__background;
+			background-image: url("https://live.staticflickr.com/65535/52507487906_e610e9fc6d_o.jpg");
+			animation-name: fadeInAndOut2;
+		}
+
+		&--3 {
+			@extend .hero__background;
+			background: {
+				image: url("https://live.staticflickr.com/65535/52508039833_f775737595_o.jpg");
+				position-x: 20%;
+			}
+			animation-name: fadeInAndOut3;
+		}
+
+		&--4 {
+			@extend .hero__background;
+			background-image: url("https://live.staticflickr.com/65535/52507486406_1b80fd307b_o.jpg");
+			animation-name: fadeInAndOut4;
+		}
+
+		&--5 {
+			@extend .hero__background;
+			background: {
+				image: url("https://live.staticflickr.com/65535/52507002027_e9c653d29c_o.jpg");
+				position-x: 70%;
+			}
+			animation-name: fadeInAndOut5;
+		}
+
+		&--404 {
+			@extend .hero__background;
+			background: {
+				image: url("https://live.staticflickr.com/65535/52506996562_f95be15062_o.jpg");
+				position-x: 20%;
+			}
+			animation: {
+				name: fadeIn;
+				duration: 2s;
+			}
+		}
+	}
+
+	&__backFilter {
+		width: inherit;
+		height: inherit;
+		backdrop-filter: brightness(50%);
+		background: {
+			image: linear-gradient(
+				to top,
+				rgba(16, 26, 18, 1) 4%,
+				rgba(16, 26, 18, 0.3) 20%
+			);
+			color: rgba(16, 26, 18, 0);
+		}
+		transition: {
+			property: background-color;
+			duration: 0.5s;
+		}
+	}
+
+	&__title {
+		@include revealOnLoad;
+		animation-delay: 1s;
+		margin: 0;
+		color: $color-8;
+		font: {
+			family: $jost;
+			weight: 600;
+		}
+		text-align: center;
+		width: 100%;
+		letter-spacing: 0.125rem;
+
+		&--homepage {
+			@extend .hero__title;
+
+			@media screen {
+				@media #{$portrait} {
+					@include fluidContent(font-size, 2.5rem, 5.625, 2.5, 100vw);
+					@include fluidContent(line-height, 2.5rem, 5.625, 2.5, 100vw);
+
+					@media #{$mq-w1080-up} {
+						font-size: 5.625rem;
+						line-height: 5.625rem;
+					}
+				}
+
+				@media #{$landscape} {
+					@include fluidContent(font-size, 2rem, 6.25, 2, 100vh);
+					@include fluidContent(line-height, 2rem, 6.25, 2, 100vh);
+
+					@media #{$mq-h1080-up} {
+						font-size: 6.25rem;
+						line-height: 6.25rem;
+					}
+				}
+			}
+		}
+
+		&--gallery {
+			@extend .hero__title;
+
+			@media screen {
+				@media #{$portrait} {
+					@include fluidContent(font-size, 2.5rem, 5.625, 2.5, 100vw);
+					@include fluidContent(letter-spacing, 0.3125rem, 0.9375, 0.3125, 100vw);
+
+					@media #{$mq-w1080-up} {
+						font-size: 5.625rem;
+						letter-spacing: 0.9375rem;
+					}
+				}
+
+				@media #{$landscape} {
+					@include fluidContent(font-size, 2rem, 6.25, 2, 100vh);
+					@include fluidContent(letter-spacing, 0.3125rem, 0.9375, 0.3125, 100vh);
+
+					@media #{$mq-h1080-up} {
+						font-size: 6.25rem;
+						letter-spacing: 0.9375rem;
+					}
+				}
+			}
+		}
+
+		&--portfolio {
+			@extend .hero__title--gallery;
+		}
+
+		&--404 {
+			@extend .hero__title;
+
+			@media screen {
+				@media #{$portrait} {
+					@include fluidContent(font-size, 2.1875rem, 5.625, 2.1875, 100vw);
+
+					@media #{$mq-w1080-up} {
+						font-size: 5.625rem;
+					}
+				}
+
+				@media #{$landscape} {
+					@include fluidContent(font-size, 1.6875rem, 5.625, 1.6875, 100vh);
+
+					@media #{$mq-h1080-up} {
+						font-size: 5.625rem;
+					}
+				}
+			}
+		}
+
+		.title {
+			position: relative;
+			z-index: 1;
+			display: block;
+
+			&__job {
+				&Part1 {
+					@extend .title;
+					font-weight: 200;
+				}
+
+				&Part2 {
+					@extend .title;
+				}
+			}
+
+			&__ampersand {
+				@extend .title;
+				z-index: 0;
+				display: block;
+				color: $color-7;
+				opacity: 0.5;
+				font-weight: 300;
+
+				@media screen {
+					@media #{$portrait} {
+						@include fluidContent(font-size, 18.75rem, 41.875, 18.75, 100vw);
+
+						@media #{$mq-w1080-up} {
+							font-size: 41.875rem;
+						}
+					}
+
+					@media #{$landscape} {
+						@include fluidContent(font-size, 15rem, 46.875, 15, 100vh);
+
+						@media #{$mq-h1080-up} {
+							font-size: 46.875rem;
+						}
+					}
+				}
+			}
+
+			&__hobby {
+				&Part1 {
+					@extend .title__jobPart1;
+				}
+
+				&Part2 {
+					@extend .title__jobPart2;
+				}
+			}
+		}
+	}
+
+	&__scrollDown {
+		@include revealOnLoad;
+		animation-delay: 1.5s;
+		position: absolute;
+		bottom: 1.25rem;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		opacity: 0;
+	}
+
+	&__scrollDownContainer {
+		@media screen {
+			@media #{$portrait} {
+				@include fluidContent(width, 1.875rem, 2.5, 1.875, 100vw);
+				@include fluidContent(height, 1.875rem, 2.5, 1.875, 100vw);
+
+				@media #{$mq-w1080-up} {
+					width: 2.5rem;
+					height: 2.5rem;
+				}
+			}
+
+			@media #{$landscape} {
+				@include fluidContent(width, 1.75rem, 2.625, 1.75, 100vh);
+				@include fluidContent(height, 1.75rem, 2.625, 1.75, 100vh);
+
+				@media #{$mq-h1080-up} {
+					width: 2.625rem;
+					height: 2.625rem;
+				}
+			}
+		}
+	}
+
+	.hideHeroBackground {
+		background-color: rgba(16, 26, 18, 1);
+	}
+}

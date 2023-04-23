@@ -1,0 +1,109 @@
+/* MENU */
+.menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background-color: $color-3;
+	transform: translate(0, 0);
+	transition: {
+		property: transform;
+		duration: 0.8s;
+	}
+
+	&--closed {
+		@extend .menu;
+		transform: translate(100%, 0);
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		opacity: 1;
+		text-align: center;
+
+		@media screen {
+			@media #{$portrait} {
+				@include fluidContent(row-gap, 1.875rem, 9.375, 1.875, 100vw);
+
+				@media #{$mq-w1080-up} {
+					row-gap: 9.375rem;
+				}
+			}
+
+			@media #{$landscape} {
+				@include fluidContent(row-gap, 0.9375rem, 6.25, 0.9375, 100vh);
+
+				@media #{$mq-h1080-up} {
+					row-gap: 6.25rem;
+				}
+			}
+		}
+	}
+
+	&__link {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: relative;
+		text-decoration: none;
+		color: $color-5;
+		-webkit-tap-highlight-color: transparent;
+		font: {
+			family: $dm-sans;
+			weight: 700;
+		}
+		letter-spacing: 0.125rem;
+
+		@media screen {
+			@media #{$portrait} {
+				@include fluidContent(font-size, 2.5rem, 6.25, 2.5, 100vw);
+
+				@media #{$mq-w1080-up} {
+					font-size: 6.25rem;
+				}
+			}
+
+			@media #{$landscape} {
+				@include fluidContent(font-size, 1.875rem, 5, 1.875, 100vh);
+
+				@media #{$mq-h1080-up} {
+					font-size: 5rem;
+				}
+			}
+
+			@media #{$hover} {
+				&:before {
+					content: attr(data-link);
+					display: block;
+					position: absolute;
+					z-index: -1;
+					color: $color-1;
+					transition: {
+						property: transform transform-origin;
+						duration: 0.75s;
+					}
+				}
+
+				&:hover {
+					&:before {
+						transform: translateY(-25%) scale(1.4);
+						transform-origin: bottom;
+					}
+				}
+			}
+		}
+
+		&--active {
+			color: $color-8;
+		}
+	}
+}

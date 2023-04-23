@@ -1,0 +1,59 @@
+/* FETCHERROR */
+.fetchError {
+	display: flex;
+	align-items: center;
+	padding: {
+		top: 1.875rem;
+		right: 1.25rem;
+		bottom: 1.875rem;
+		left: 1.25rem;
+	}
+	background-color: $color-2;
+	border-radius: 1.875rem;
+
+	@media screen {
+		@media #{$portrait} {
+			flex-direction: column;
+			row-gap: 1.875rem;
+
+			@media #{$mq-w700-up} {
+				flex-direction: row;
+				column-gap: 1.875rem;
+				row-gap: unset;
+			}
+		}
+
+		@media #{$landscape} {
+			column-gap: 1.875rem;
+		}
+	}
+
+	&__errorIcon {
+		width: 6.25rem;
+		height: 6.25rem;
+	}
+
+	&__message {
+		display: inherit;
+		align-items: center;
+		margin: 0;
+
+		@media screen {
+			@media #{$portrait} {
+				@include fluidContent(font-size, 1rem, 1.25, 1, 100vw);
+
+				@media #{$mq-w1080-up} {
+					font-size: 1.25rem;
+				}
+			}
+
+			@media #{$landscape} {
+				@include fluidContent(font-size, 1rem, 1.5, 1, 100vh);
+
+				@media #{$mq-h1080-up} {
+					font-size: 1.5rem;
+				}
+			}
+		}
+	}
+}

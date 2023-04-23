@@ -1,0 +1,229 @@
+/* KEYFRAMES */
+
+/* Scroll reveal animation */
+@keyframes reveal {
+	0% {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Hero background images carousel */
+@keyframes fadeInAndOut1 {
+	0% {
+		opacity: 0;
+		transform: scale(1);
+	}
+
+	20% {
+		opacity: 1
+	}
+
+	80% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(1.1);
+	}
+}
+
+@keyframes fadeInAndOut2 {
+	0% {
+		opacity: 0;
+		transform: scale(1);
+	}
+
+	20% {
+		opacity: 1;
+	}
+
+	80% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(1.1);
+	}
+}
+
+@keyframes fadeInAndOut3 {
+	0% {
+		opacity: 0;
+		transform: scale(1);
+	}
+
+	20% {
+		opacity: 1;
+	}
+
+	80% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(1.1);
+	}
+}
+
+@keyframes fadeInAndOut4 {
+	0% {
+		opacity: 0;
+		transform: scale(1);
+	}
+
+	20% {
+		opacity: 1;
+	}
+
+	80% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(1.1);
+	}
+}
+
+@keyframes fadeInAndOut5 {
+	0% {
+		opacity: 0;
+		transform: scale(1);
+	}
+
+	20% {
+		opacity: 1;
+	}
+
+	80% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(1.1);
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/* Menu icon animation */
+@keyframes topFigureToCross {
+	0% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(0.5625rem);
+	}
+
+	100% {
+		transform: translateY(0.5625rem) rotate(-45deg);
+	}
+}
+
+@keyframes topFigureToHamburger {
+	0% {
+		transform: translateY(0.5625rem) rotate(-45deg);
+	}
+
+	50% {
+		transform: translateY(0.5625rem);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes middleFigureToTransparent {
+	0% {
+		fill: $color-8;
+	}
+
+	50% {
+		fill: $color-8;
+	}
+
+	51% {
+		fill: transparent;
+	}
+
+	100% {
+		fill: transparent;
+	}
+}
+
+@keyframes middleFigureToOpaque {
+	0% {
+		fill: transparent;
+	}
+
+	50% {
+		fill: transparent;
+	}
+
+	51% {
+		fill: $color-8;
+	}
+
+	100% {
+		fill: $color-8;
+	}
+}
+
+@keyframes bottomFigureToCross {
+	0% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-0.5625rem);
+	}
+
+	100% {
+		transform: translateY(-0.5625rem) rotate(45deg);
+	}
+}
+
+@keyframes bottomFigureToHamburger {
+	0% {
+		transform: translateY(-0.5625rem) rotate(45deg);
+	}
+
+	50% {
+		transform: translateY(-0.5625rem);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+/* Scroll down arrow and loading screen animation */
+@keyframes blinking {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}

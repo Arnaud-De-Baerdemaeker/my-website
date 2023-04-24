@@ -265,6 +265,7 @@ class Gallery extends Component {
 													? photo.url_c
 													: photo.photo.url_c
 												}
+												alt={`${photo.tags.subject}, ${photo.tags.city} ${photo.tags.country}`}
 												data-hd={
 													sessionStorage.getItem("photos")
 													? photo.url_o

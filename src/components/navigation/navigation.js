@@ -44,7 +44,7 @@ class Navigation extends Component {
 							{"Galerie"}
 						</NavLink>
 					</li>
-					<li>
+					<li className={"menu__listItem"}>
 						<NavLink
 							to={"/portfolio"}
 							onClick={this.props.toggleMenu}

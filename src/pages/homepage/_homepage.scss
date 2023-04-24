@@ -1,0 +1,143 @@
+/* HOMEPAGE */
+.homepage {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 4.6875rem;
+	margin: {
+		right: auto;
+		left: auto;
+	}
+	padding: {
+		top: 6.25rem;
+		right: 1.25rem;
+		bottom: 6.25rem;
+		left: 1.25rem;
+	}
+
+	&__myPhoto {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		row-gap: 2.5rem;
+
+		@media screen {
+			@media #{$portrait} {
+				max-width: 43.75rem;
+			}
+
+			@media #{$landscape} {
+				max-width: 62.5rem;
+			}
+		}
+	}
+
+	&__introduction {
+		font-family: $economica;
+		margin: 0;
+
+		@media screen {
+			@media #{$portrait} {
+				@include fluidContent(font-size, 1.875rem, 2.5, 1.875, 100vw);
+
+				@media #{$mq-w1080-up} {
+					font-size: 2.5rem;
+				}
+			}
+
+			@media #{$landscape} {
+				@include fluidContent(font-size, 1.75rem, 3.125, 1.75, 100vh);
+
+				@media #{$mq-h1080-up} {
+					font-size: 3.125rem;
+				}
+			}
+		}
+	}
+
+	&__description {
+		display: flex;
+		flex-direction: column;
+		row-gap: 3.125rem;
+
+		@media screen {
+			@media #{$portrait} {
+				max-width: 43.75rem;
+			}
+
+			@media #{$landscape} {
+				max-width: 62.5rem;
+			}
+		}
+	}
+
+	&__section {
+		display: flex;
+		flex-direction: column;
+		row-gap: 1.5625rem;
+	}
+
+	&__title {
+		font-family: $economica;
+		border-left: {
+			style: solid;
+			width: 0.3125rem;
+			color: $color-1;
+		}
+		padding: {
+			top: 0.625rem;
+			bottom: 0.625rem;
+			left: 1.25rem;
+		}
+		margin: 0;
+
+		@media screen {
+			@media #{$portrait} {
+				@include fluidContent(font-size, 1.75rem, 2.375, 1.75, 100vw);
+
+				@media #{$mq-w1080-up} {
+					font-size: 2.375rem;
+				}
+			}
+
+			@media #{$landscape} {
+				@include fluidContent(font-size, 1.75rem, 2.5, 1.75, 100vh);
+
+				@media #{$mq-h1080-up} {
+					font-size: 2.5rem;
+				}
+			}
+		}
+
+		&:after {
+			content: "\002E";
+			color: $color-1;
+		}
+	}
+
+	&__paragraph {
+		margin: 0;
+
+		@media screen {
+			@media #{$portrait} {
+				@include fluidContent(font-size, 1.125rem, 1.25, 1.125, 100vw);
+				@include fluidContent(line-height, 1.75rem, 2, 1.75, 100vh);
+
+				@media #{$mq-w1080-up} {
+					font-size: 1.25rem;
+					line-height: 2rem;
+				}
+			}
+
+			@media #{$landscape} {
+				@include fluidContent(font-size, 1.125rem, 1.375, 1.125, 100vh);
+				@include fluidContent(line-height, 1.75rem, 2, 1.75, 100vh);
+
+				@media #{$mq-h1080-up} {
+					font-size: 1.375rem;
+					line-height: 2rem;
+				}
+			}
+		}
+	}
+}

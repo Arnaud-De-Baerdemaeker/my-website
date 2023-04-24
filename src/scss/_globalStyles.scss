@@ -1,0 +1,38 @@
+/* GLOBAL STYLES */
+html {
+	height: 100%;
+	font-size: 16px;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "DM Sans", Arial, Helvetica, sans-serif;
+	background-color: $color-4;
+	color: $color-8;
+}
+
+#root {
+	height: 100%;
+}
+
+.view {
+	&--hidden {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+
+	&--visible {
+		opacity: 1;
+		transform: translateY(0);
+		transition: {
+			property: opacity transform;
+			duration: 2s;
+		}
+	}
+}
+
+.scrollBlocked {
+	overflow-y: hidden;
+}

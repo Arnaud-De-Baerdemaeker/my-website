@@ -775,7 +775,7 @@ body {
     transform-origin: bottom;
   }
 }
-.menu__link--active {
+.menu .active, .menu--closed .active {
   color: rgb(249, 246, 238);
 }
 

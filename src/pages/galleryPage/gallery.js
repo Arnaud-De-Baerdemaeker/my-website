@@ -45,7 +45,7 @@ class Gallery extends Component {
 			},
 			params: {
 				api_key: process.env.REACT_APP_API_KEY,
-				photoset_id: process.env.REACT_APP_PHOTOSET,
+				photoset_id: process.env.REACT_APP_PHOTOSET_ID,
 				format: "json",
 				nojsoncallback: 1,
 				extras: "url_o, url_c",

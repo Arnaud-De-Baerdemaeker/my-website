@@ -9,6 +9,7 @@ import Header from "../../components/header/header";
 import Navigation from "../../components/navigation/navigation";
 import Hero from "../../components/hero/hero";
 import SVG from "../../components/svg/svg";
+import FetchLoading from "../../components/fetchLoading/fetchLoading";
 import FetchError from "../../components/fetchError/fetchError";
 import Card from "../../components/card/card";
 import Modal from "../../components/modal/modal";
@@ -19,6 +20,7 @@ class Gallery extends Component {
 		super(props);
 		this.state = {
 			photos: null,
+			isFetchLoading: false,
 			hasFetchFailed: false,
 			hdPicture: null,
 			isModalOpen: false
@@ -39,17 +41,7 @@ class Gallery extends Component {
 	async getPhotos() {
 		await axios({
 			method: "GET",
-			url: "https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			params: {
-				api_key: process.env.REACT_APP_API_KEY,
-				photoset_id: process.env.REACT_APP_PHOTOSET_ID,
-				format: "json",
-				nojsoncallback: 1,
-				extras: "url_o, url_c",
-			}
+			url: "/.netlify/functions/getPhotos"
 		})
 		.then(results => {
 			this.photos = results.data.photoset.photo;
@@ -57,15 +49,9 @@ class Gallery extends Component {
 			const promises = this.photos.map(async photo => {
 				return await axios({
 					method: "GET",
-					url: "https://www.flickr.com/services/rest/?method=flickr.tags.getListPhoto",
-					header: {
-						"Content-Type": "application/json"
-					},
+					url: "/.netlify/functions/getTags",
 					params: {
-						api_key: process.env.REACT_APP_API_KEY,
 						photo_id: photo.id,
-						format: "json",
-						nojsoncallback: 1,
 					}
 				});
 			});
@@ -95,12 +81,9 @@ class Gallery extends Component {
 					})
 				});
 
-				this.setState({
-					photos: finalResult
-				});
+				let photos = [];
 
-				const photos = [];
-				this.state.photos.map(photo => {
+				finalResult.map(photo => {
 					photos.push({
 						id: photo.photo.id,
 						url_c: photo.photo.url_c,
@@ -113,16 +96,23 @@ class Gallery extends Component {
 					});
 				});
 
-				sessionStorage.setItem("photos", JSON.stringify(photos));
+				this.setState({
+					photos: finalResult,
+					isFetchLoading: false
+				});
+
+				// sessionStorage.setItem("photos", JSON.stringify(photos));
 			})
 			.catch(() => {
 				this.setState({
+					isFetchLoading: false,
 					hasFetchFailed: true
 				});
 			});
 		})
 		.catch(() => {
 			this.setState({
+				isFetchLoading: false,
 				hasFetchFailed: true
 			});
 		});
@@ -177,6 +167,10 @@ class Gallery extends Component {
 			});
 		}
 		else {
+			this.setState({
+				isFetchLoading: true
+			});
+
 			this.getPhotos();
 		}
 	}
@@ -203,7 +197,7 @@ class Gallery extends Component {
 	}
 
 	render() {
-		return (
+		return(
 			<>
 				<Header
 					isMenuOpen={this.props.isMenuOpen}
@@ -295,7 +289,11 @@ class Gallery extends Component {
 								toggleModal={this.toggleModal}
 							/>
 						</>
-						: this.state.hasFetchFailed && <FetchError />
+						: this.state.hasFetchFailed
+						? <FetchError />
+						: this.state.isFetchLoading
+						? <FetchLoading />
+						: null
 					}
 				</main>
 				<Footer

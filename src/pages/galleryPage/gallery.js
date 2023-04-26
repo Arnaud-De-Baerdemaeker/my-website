@@ -96,12 +96,12 @@ class Gallery extends Component {
 					});
 				});
 
+				sessionStorage.setItem("photos", JSON.stringify(photos));
+
 				this.setState({
-					photos: finalResult,
+					photos: photos,
 					isFetchLoading: false
 				});
-
-				// sessionStorage.setItem("photos", JSON.stringify(photos));
 			})
 			.catch(() => {
 				this.setState({

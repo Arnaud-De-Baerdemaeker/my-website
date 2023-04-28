@@ -45,6 +45,10 @@
 		@extend .svg;
 	}
 
+	&__loading {
+		@extend .svg;
+	}
+
 	&__error {
 		@extend .svg;
 	}
@@ -148,6 +152,27 @@
 
 	&__close {
 		@extend .icon;
+	}
+
+	&__loading {
+		@extend .icon;
+		animation: {
+			duration: 2s;
+			iteration-count: infinite;
+			timing-function: linear;
+		}
+
+		&--outerArc {
+			@extend .icon__loading;
+			transform-origin: left center;
+			animation-name: clockWiseRotatingArc;
+		}
+		
+		&--innerArc {
+			@extend .icon__loading;
+			transform-origin: right center;
+			animation-name: counterClockWiseRotatingArc;
+		}
 	}
 
 	&__error {

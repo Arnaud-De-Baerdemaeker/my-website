@@ -132,7 +132,10 @@ class Gallery extends Component {
 			this.props.headerRef.current.classList.add("scroll");
 			this.timeout = setTimeout(() => {
 				this.setState({
-					hdPicture: null
+					hdPicture: {
+						src: null,
+						alt: null
+					}
 				});
 			}, 800);
 		}

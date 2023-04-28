@@ -1,5 +1,5 @@
-/* FETCHERROR */
-.fetchError {
+/* FETCHSTATUS */
+.fetchStatus {
 	display: flex;
 	align-items: center;
 	padding: {
@@ -28,7 +28,7 @@
 		}
 	}
 
-	&__errorIcon {
+	&__icon {
 		width: 6.25rem;
 		height: 6.25rem;
 	}

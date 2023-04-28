@@ -181,6 +181,23 @@
     opacity: 0;
   }
 }
+/* Rotation of the loading icon */
+@keyframes clockWiseRotatingArc {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+@keyframes counterClockWiseRotatingArc {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}
 /* GLOBAL STYLES */
 html {
   height: 100%;
@@ -595,7 +612,7 @@ body {
 }
 
 /* SVG */
-.svg, .svg__error, .svg__close, .svg__background, .svg__scrollDown, .svg__menu {
+.svg, .svg__error, .svg__loading, .svg__close, .svg__background, .svg__scrollDown, .svg__menu {
   width: 100%;
   height: 100%;
   transform-box: fill-box;
@@ -620,7 +637,7 @@ body {
 .svg__background .background3 {
   fill: rgb(25, 39, 27);
 }
-.icon, .icon__error, .icon__close, .icon__chevronBottom, .icon__chevronMiddle, .icon__chevronTop, .icon__hamburgerBottom, .icon__hamburgerBottom--close, .icon__hamburgerMiddle, .icon__hamburgerMiddle--close, .icon__hamburgerTop, .icon__hamburgerTop--close {
+.icon, .icon__error, .icon__loading, .icon__loading--innerArc, .icon__loading--outerArc, .icon__close, .icon__chevronBottom, .icon__chevronMiddle, .icon__chevronTop, .icon__hamburgerBottom, .icon__hamburgerBottom--close, .icon__hamburgerMiddle, .icon__hamburgerMiddle--close, .icon__hamburgerTop, .icon__hamburgerTop--close {
   width: 100%;
   height: 100%;
   fill: rgb(249, 246, 238);
@@ -679,6 +696,19 @@ body {
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-delay: 0.625s;
+}
+.icon__loading, .icon__loading--innerArc, .icon__loading--outerArc {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.icon__loading--outerArc {
+  transform-origin: left center;
+  animation-name: clockWiseRotatingArc;
+}
+.icon__loading--innerArc {
+  transform-origin: right center;
+  animation-name: counterClockWiseRotatingArc;
 }
 /* MENU */
 .menu, .menu--closed {
@@ -1085,8 +1115,8 @@ body {
   }
 }
 
-/* FETCHERROR */
-.fetchError {
+/* FETCHSTATUS */
+.fetchStatus {
   display: flex;
   align-items: center;
   padding-top: 1.875rem;
@@ -1097,13 +1127,13 @@ body {
   border-radius: 1.875rem;
 }
 @media screen and (orientation: portrait) {
-  .fetchError {
+  .fetchStatus {
     flex-direction: column;
     row-gap: 1.875rem;
   }
 }
 @media screen and (orientation: portrait) and (min-width: 43.75rem) {
-  .fetchError {
+  .fetchStatus {
     flex-direction: row;
     -moz-column-gap: 1.875rem;
          column-gap: 1.875rem;
@@ -1111,37 +1141,37 @@ body {
   }
 }
 @media screen and (orientation: landscape) {
-  .fetchError {
+  .fetchStatus {
     -moz-column-gap: 1.875rem;
          column-gap: 1.875rem;
   }
 }
-.fetchError__errorIcon {
+.fetchStatus__icon {
   width: 6.25rem;
   height: 6.25rem;
 }
-.fetchError__message {
+.fetchStatus__message {
   display: inherit;
   align-items: center;
   margin: 0;
 }
 @media screen and (orientation: portrait) {
-  .fetchError__message {
+  .fetchStatus__message {
     font-size: calc(1rem + (1.25 - 1) * ((100vw - 18.75rem) / (67.5 - 18.75)));
   }
 }
 @media screen and (orientation: portrait) and (min-width: 67.5rem) {
-  .fetchError__message {
+  .fetchStatus__message {
     font-size: 1.25rem;
   }
 }
 @media screen and (orientation: landscape) {
-  .fetchError__message {
+  .fetchStatus__message {
     font-size: calc(1rem + (1.5 - 1) * ((100vh - 18.75rem) / (67.5 - 18.75)));
   }
 }
 @media screen and (orientation: landscape) and (min-height: 67.5rem) {
-  .fetchError__message {
+  .fetchStatus__message {
     font-size: 1.5rem;
   }
 }

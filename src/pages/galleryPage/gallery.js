@@ -9,7 +9,7 @@ import Header from "../../components/header/header";
 import Navigation from "../../components/navigation/navigation";
 import Hero from "../../components/hero/hero";
 import SVG from "../../components/svg/svg";
-import FetchError from "../../components/fetchError/fetchError";
+import FetchStatus from "../../components/fetchStatus/fetchStatus";
 import Card from "../../components/card/card";
 import Modal from "../../components/modal/modal";
 import Footer from "../../components/footer/footer";
@@ -19,6 +19,7 @@ class Gallery extends Component {
 		super(props);
 		this.state = {
 			photos: null,
+			isFetchLoading: false,
 			hasFetchFailed: false,
 			hdPicture: null,
 			isModalOpen: false
@@ -39,17 +40,7 @@ class Gallery extends Component {
 	async getPhotos() {
 		await axios({
 			method: "GET",
-			url: "https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			params: {
-				api_key: process.env.REACT_APP_API_KEY,
-				photoset_id: process.env.REACT_APP_PHOTOSET_ID,
-				format: "json",
-				nojsoncallback: 1,
-				extras: "url_o, url_c",
-			}
+			url: "/.netlify/functions/getPhotos"
 		})
 		.then(results => {
 			this.photos = results.data.photoset.photo;
@@ -57,15 +48,9 @@ class Gallery extends Component {
 			const promises = this.photos.map(async photo => {
 				return await axios({
 					method: "GET",
-					url: "https://www.flickr.com/services/rest/?method=flickr.tags.getListPhoto",
-					header: {
-						"Content-Type": "application/json"
-					},
+					url: "/.netlify/functions/getTags",
 					params: {
-						api_key: process.env.REACT_APP_API_KEY,
 						photo_id: photo.id,
-						format: "json",
-						nojsoncallback: 1,
 					}
 				});
 			});
@@ -95,12 +80,9 @@ class Gallery extends Component {
 					})
 				});
 
-				this.setState({
-					photos: finalResult
-				});
+				let photos = [];
 
-				const photos = [];
-				this.state.photos.map(photo => {
+				finalResult.map(photo => {
 					photos.push({
 						id: photo.photo.id,
 						url_c: photo.photo.url_c,
@@ -114,15 +96,22 @@ class Gallery extends Component {
 				});
 
 				sessionStorage.setItem("photos", JSON.stringify(photos));
+
+				this.setState({
+					photos: photos,
+					isFetchLoading: false
+				});
 			})
 			.catch(() => {
 				this.setState({
+					isFetchLoading: false,
 					hasFetchFailed: true
 				});
 			});
 		})
 		.catch(() => {
 			this.setState({
+				isFetchLoading: false,
 				hasFetchFailed: true
 			});
 		});
@@ -177,13 +166,17 @@ class Gallery extends Component {
 			});
 		}
 		else {
+			this.setState({
+				isFetchLoading: true
+			});
+
 			this.getPhotos();
 		}
 	}
 
 	componentDidUpdate(prevState) {
 		if(this.state.photos !== prevState.photos) {
-			const elementsToHide = document.querySelectorAll(".card--photo, .fetchError");
+			const elementsToHide = document.querySelectorAll(".card--photo, .fetchStatus");
 
 			// Apply a class to initially hide the elements
 			this.props.applyHideClass(elementsToHide);
@@ -203,7 +196,7 @@ class Gallery extends Component {
 	}
 
 	render() {
-		return (
+		return(
 			<>
 				<Header
 					isMenuOpen={this.props.isMenuOpen}
@@ -295,7 +288,39 @@ class Gallery extends Component {
 								toggleModal={this.toggleModal}
 							/>
 						</>
-						: this.state.hasFetchFailed && <FetchError />
+						: this.state.hasFetchFailed
+						? <FetchStatus
+							svgClass={"svg__error"}
+							svgPath={
+								<path
+									d={"M7.5 6C6 4.49998 4.5 6 6 7.5L16.5 18L6.00004 28.5C4.50003 30 6.00007 31.5 7.50006 30L18 19.5L28.5 30C30 31.5 31.5 30 30 28.5L19.5 18L30 7.5C31.5 5.99997 30 4.49998 28.5 5.99998L18 16.5L7.5 6Z"}
+									className={"icon__error"}
+								/>
+							}
+							message={<>
+								{"Un problème est survenu durant le traitement de la requête."}
+								<br />
+								{"Les photos ne peuvent pas être récupérées pour le moment."}
+							</>}
+						/>
+						: this.state.isFetchLoading
+						? <FetchStatus
+							svgClass={"svg__loading"}
+							svgPath={
+								<>
+									<path
+										d={"M18 28.5024C18 28.7772 17.777 29.0012 17.5025 28.9888C14.7661 28.865 12.1672 27.7235 10.2218 25.7782C8.15893 23.7153 7 20.9174 7 18C7 15.0826 8.15893 12.2847 10.2218 10.2218C12.1672 8.27649 14.7661 7.13503 17.5025 7.01124C17.777 6.99883 18 7.22279 18 7.49762V7.49762C18 7.77244 17.7771 7.99394 17.5026 8.00759C15.0303 8.13057 12.6842 9.16688 10.9256 10.9256C9.0493 12.8018 7.99523 15.3466 7.99523 18C7.99523 20.6534 9.0493 23.1982 10.9256 25.0744C12.6842 26.8331 15.0303 27.8694 17.5026 27.9924C17.7771 28.0061 18 28.2276 18 28.5024V28.5024Z"}
+										className={"icon__loading--innerArc"}
+									/>
+									<path
+										d={"M18 5.4875C18 5.21826 18.2183 4.99905 18.4874 5.00914C20.0283 5.06695 21.5479 5.3985 22.9749 5.98957C24.5521 6.64288 25.9852 7.60045 27.1924 8.80761C28.3996 10.0148 29.3571 11.4479 30.0104 13.0251C30.6637 14.6023 31 16.2928 31 18C31 19.7072 30.6637 21.3977 30.0104 22.9749C29.3571 24.5521 28.3995 25.9852 27.1924 27.1924C25.9852 28.3996 24.5521 29.3571 22.9749 30.0104C21.5479 30.6015 20.0283 30.9331 18.4874 30.9909C18.2183 31.001 18 30.7817 18 30.5125V30.5125C18 30.2433 18.2184 30.026 18.4874 30.0151C19.9002 29.9578 21.2931 29.6517 22.6018 29.1097C24.0607 28.5053 25.3863 27.6196 26.503 26.503C27.6196 25.3863 28.5053 24.0607 29.1097 22.6018C29.714 21.1428 30.025 19.5791 30.025 18C30.025 16.4209 29.714 14.8572 29.1097 13.3982C28.5053 11.9393 27.6196 10.6137 26.503 9.49704C25.3863 8.38042 24.0607 7.49466 22.6018 6.89035C21.2931 6.34828 19.9002 6.04219 18.4874 5.98488C18.2184 5.97397 18 5.75674 18 5.4875V5.4875Z"}
+										className={"icon__loading--outerArc"}
+									/>
+								</>
+							}
+							message={"Chargement en cours..."}
+						/>
+						: null
 					}
 				</main>
 				<Footer

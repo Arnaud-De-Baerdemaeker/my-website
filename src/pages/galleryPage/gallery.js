@@ -61,28 +61,26 @@ class Gallery extends Component {
 
 				let finalResult = [];
 
-				this.photos.map(photo => {
-					this.tags.find(tags => {
-						if(tags.data.photo.id === photo.id) {
-							finalResult.push({
-								photo: {
-									id: photo.id,
-									url_c: photo.url_c,
-									url_o: photo.url_o
-								},
-								tags: {
-									subject: tags.data.photo.tags.tag.length === 3 ? tags.data.photo.tags.tag[0].raw : null,
-									city: tags.data.photo.tags.tag.length === 3 ? tags.data.photo.tags.tag[1].raw : tags.data.photo.tags.tag[0].raw,
-									country: tags.data.photo.tags.tag.length === 3 ? tags.data.photo.tags.tag[2].raw : tags.data.photo.tags.tag[1].raw
-								}
-							});
-						}
-					})
-				});
+				this.photos.map(photo => (
+					this.tags.find(tags => (
+						tags.data.photo.id === photo.id && finalResult.push({
+							photo: {
+								id: photo.id,
+								url_c: photo.url_c,
+								url_o: photo.url_o
+							},
+							tags: {
+								subject: tags.data.photo.tags.tag.length === 3 ? tags.data.photo.tags.tag[0].raw : null,
+								city: tags.data.photo.tags.tag.length === 3 ? tags.data.photo.tags.tag[1].raw : tags.data.photo.tags.tag[0].raw,
+								country: tags.data.photo.tags.tag.length === 3 ? tags.data.photo.tags.tag[2].raw : tags.data.photo.tags.tag[1].raw
+							}
+						})
+					))
+				));
 
 				let photos = [];
 
-				finalResult.map(photo => {
+				finalResult.map(photo => (
 					photos.push({
 						id: photo.photo.id,
 						url_c: photo.photo.url_c,
@@ -92,8 +90,8 @@ class Gallery extends Component {
 							city: photo.tags.city,
 							country: photo.tags.country
 						}
-					});
-				});
+					})
+				));
 
 				sessionStorage.setItem("photos", JSON.stringify(photos));
 

@@ -18,6 +18,7 @@ class Modal extends Component {
 				<div className={"modal__imageContainer"}>
 					<img
 						src={this.props.hd}
+						alt={this.props.imgAlt}
 						className={"modal__image"}
 					/>
 				</div>

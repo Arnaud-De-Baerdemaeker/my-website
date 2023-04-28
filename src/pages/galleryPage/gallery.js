@@ -21,7 +21,10 @@ class Gallery extends Component {
 			photos: null,
 			isFetchLoading: false,
 			hasFetchFailed: false,
-			hdPicture: null,
+			hdPicture: {
+				src: null,
+				alt: null
+			},
 			isModalOpen: false
 		}
 		this.body = document.querySelector("body");
@@ -143,7 +146,10 @@ class Gallery extends Component {
 	getDataFromTarget(click) {
 		click.preventDefault();
 		this.setState({
-			hdPicture: click.target.dataset.hd
+			hdPicture: {
+				src: click.target.dataset.hd,
+				alt: click.target.alt
+			}
 		});
 	}
 
@@ -281,7 +287,8 @@ class Gallery extends Component {
 								)}
 							</ul>
 							<Modal
-								hd={this.state.hdPicture}
+								hd={this.state.hdPicture.src}
+								imgAlt={this.state.hdPicture.alt}
 								isModalOpen={this.state.isModalOpen}
 								toggleModal={this.toggleModal}
 							/>

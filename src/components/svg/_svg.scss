@@ -1,0 +1,181 @@
+/* SVG */
+.svg {
+	width: 100%;
+	height: 100%;
+	transform-box: fill-box;
+
+	&__menu {
+		@extend .svg;
+	}
+
+	&__scrollDown {
+		@extend .svg;
+	}
+
+	&__background {
+		@extend .svg;
+
+		@media screen {
+			@media #{$portrait} {
+				max-width: 31.25rem;
+			}
+
+			@media #{$landscape} {
+				max-width: 37.5rem;
+			}
+		}
+
+		.background {
+			&1 {
+				fill: $color-1;
+			}
+		
+			&2 {
+				fill: $color-2;
+				fill-opacity: 0.5;
+			}
+		
+			&3 {
+				fill: $color-3;
+			}
+		}
+	}
+
+	&__close {
+		@extend .svg;
+	}
+
+	&__loading {
+		@extend .svg;
+	}
+
+	&__error {
+		@extend .svg;
+	}
+}
+
+.icon {
+	width: 100%;
+	height: 100%;
+	fill: $color-8;
+	transform-box: fill-box;
+	transform-origin: center center;
+
+	&__hamburgerTop {
+		@extend .icon;
+		animation: {
+			name: topFigureToHamburger;
+			duration: 0.5s;
+			fill-mode: forwards;
+		}
+
+		&--close {
+			@extend .icon__hamburgerTop;
+			animation: {
+				name: topFigureToCross;
+				duration: 0.5s;
+				fill-mode: forwards;
+			}
+		}
+	}
+
+	&__hamburgerMiddle {
+		@extend .icon;
+		animation: {
+			name: middleFigureToOpaque;
+			duration: 0.5s;
+			fill-mode: forwards;
+		}
+
+		&--close {
+			@extend .icon__hamburgerMiddle;
+			animation: {
+				name: middleFigureToTransparent;
+				duration: 0.5s;
+				fill-mode: forwards;
+			}
+		}
+	}
+
+	&__hamburgerBottom {
+		@extend .icon;
+		animation: {
+			name: bottomFigureToHamburger;
+			duration: 0.5s;
+			fill-mode: forwards;
+		}
+
+		&--close {
+			@extend .icon__hamburgerBottom;
+			animation: {
+				name: bottomFigureToCross;
+				duration: 0.5s;
+				fill-mode: forwards;
+			}
+		}
+	}
+
+	&__chevronTop {
+		@extend .icon;
+		opacity: 0;
+		animation: {
+			name: blinking;
+			duration: 2s;
+			iteration-count: infinite;
+			direction: alternate;
+		}
+	}
+
+	&__chevronMiddle {
+		@extend .icon;
+		opacity: 0;
+		animation: {
+			name: blinking;
+			duration: 2s;
+			iteration-count: infinite;
+			direction: alternate;
+			delay: 0.375s;
+		}
+	}
+
+	&__chevronBottom {
+		@extend .icon;
+		opacity: 0;
+		animation: {
+			name: blinking;
+			duration: 2s;
+			iteration-count: infinite;
+			direction: alternate;
+			delay: 0.625s;
+		}
+	}
+
+	&__close {
+		@extend .icon;
+	}
+
+	&__loading {
+		@extend .icon;
+		animation: {
+			duration: 2s;
+			iteration-count: infinite;
+			timing-function: linear;
+		}
+
+		&--outerArc {
+			@extend .icon__loading;
+			transform-origin: left center;
+			animation-name: clockWiseRotatingArc;
+		}
+		
+		&--innerArc {
+			@extend .icon__loading;
+			transform-origin: right center;
+			animation-name: counterClockWiseRotatingArc;
+		}
+	}
+
+	&__error {
+		@extend .icon;
+	}
+}

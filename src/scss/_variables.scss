@@ -1,0 +1,38 @@
+// VARIABLES
+
+// Colors
+$half-transparent: rgba(0, 0, 0, 0.5);
+$color-1: rgb(88, 129, 87);
+$color-2: rgb(58, 90, 64);
+$color-3: rgb(25, 39, 27);
+$color-4: rgb(16, 26, 18);
+$color-5: rgb(150, 150, 150);
+$color-6: rgb(180, 180, 180);
+$color-7: rgb(182, 206, 186);
+$color-8: rgb(249, 246, 238);
+
+// Fonts
+$bebas-neue: "Bebas Neue", Arial, Helvetica, sans-serif;
+$jost: "Jost", Arial, Helvetica, sans-serif;
+$dm-sans: "DM Sans", Arial, Helvetica, sans-serif;
+$economica : "Economica", Arial, Helvetica, sans-serif;
+
+// Orientations
+$portrait: "(orientation: portrait)";
+$landscape: "(orientation: landscape)";
+
+// Breakpoints
+$bp-400: 25rem;
+$bp-600: 37.5rem;
+$bp-700: 43.75rem;
+$bp-1080: 67.5rem;
+
+// Media queries
+$mq-w600-up: "(min-width: #{$bp-600})";
+$mq-w700-up: "(min-width: #{$bp-700})";
+$mq-w1080-up: "(min-width: #{$bp-1080})";
+
+$mq-h400-up: "(min-height: #{$bp-400})";
+$mq-h1080-up: "(min-height: #{$bp-1080})";
+
+$hover: "(hover: hover)";

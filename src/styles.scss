@@ -1,0 +1,24 @@
+// Photography website
+// Started on July 2020
+// By Arnaud De Baerdemaeker
+
+@import
+	"scss/variables",
+	"scss/mixins",
+	"scss/keyframes",
+	"scss/globalStyles",
+	"pages/homepage/homepage",
+	"pages/galleryPage/gallery",
+	"pages/portfolio/portfolio",
+	"components/header/header",
+	"components/name/name",
+	"components/button/button",
+	"components/svg/svg",
+	"components/navigation/navigation",
+	"components/hero/hero",
+	"components/card/card",
+	"components/fetchStatus/fetchStatus",
+	"components/cardOverlay/cardOverlay",
+	"components/modal/modal",
+	"components/footer/footer"
+;

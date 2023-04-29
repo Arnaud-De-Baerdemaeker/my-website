@@ -1,0 +1,93 @@
+/* CARD */
+.card {
+	position: relative;
+	overflow: hidden;
+
+	@media screen {
+		@media #{$portrait} {
+			@include fluidContent(border-radius, 0.3125rem, 0.625, 0.3125, 100vw);
+
+			@media #{$mq-w600-up} {
+				width: calc(50% - 0.3125rem);
+			}
+
+			@media #{$mq-w1080-up} {
+				border-radius: 0.625rem;
+			}
+		}
+
+		@media #{$landscape} {
+			@include fluidContent(border-radius, 0.3125rem, 0.625, 0.3125, 100vh);
+			width: calc(50% - 0.3125rem);
+
+			@media #{$mq-h1080-up} {
+				border-radius: 0.625rem;
+			}
+		}
+	}
+
+	&--photo {
+		@extend .card;
+
+		@media screen {
+			@media #{$hover} {
+				cursor: pointer;
+			}
+
+			@media #{$portrait} {
+				aspect-ratio: 2.5 / 1;
+			}
+
+			@media #{$landscape} {
+				aspect-ratio: 2 / 1;
+
+				@media #{$mq-h400-up} {
+					aspect-ratio: 3 / 1;
+				}
+			}
+		}
+	}
+
+	&--project {
+		@extend .card;
+
+		@media screen {
+			aspect-ratio: 4 / 2;
+
+			@media #{$landscape} {
+				@media #{$mq-h400-up} {
+					aspect-ratio: 2 / 1;
+				}
+			}
+		}
+	}
+
+	&__link {
+		position: relative;
+		text-decoration: none;
+		color: $color-8;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	&__image {
+		width: 100%;
+		height: 100%;
+		vertical-align: middle;
+		object-fit: cover;
+
+		@media screen {
+			@media #{$hover} {
+				filter: grayscale(100%);
+				transition: {
+					property: transform filter;
+					duration: 0.4s;
+				}
+
+				&:hover {
+					transform: scale(1.1);
+					filter: grayscale(0%);
+				}
+			}
+		}
+	}
+}

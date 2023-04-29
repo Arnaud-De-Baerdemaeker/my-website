@@ -1,0 +1,38 @@
+/* PORTFOLIO */
+.portfolio {
+	display: flex;
+	justify-content: center;
+	padding: {
+		top: 6.25rem;
+		bottom: 6.25rem;
+	}
+
+	&__list {
+		display: inherit;
+		justify-content: center;
+		flex-wrap: wrap;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		row-gap: 0.3125rem;
+		column-gap: 0.3125rem;
+
+		@media screen {
+			@media #{$portrait} {
+				@include fluidContent(width, 15.625rem, 50, 15.625, 100vw);
+
+				@media #{$mq-w1080-up} {
+					width: 50rem;
+				}
+			}
+	
+			@media #{$landscape} {
+				@include fluidContent(width, 25rem, 87.5, 25, 100vh);
+
+				@media #{$mq-h1080-up} {
+					width: 87.5rem;
+				}
+			}
+		}
+	}
+}

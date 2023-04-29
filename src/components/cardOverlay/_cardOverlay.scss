@@ -1,0 +1,160 @@
+/* CARDOVERLAY */
+.overlay {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	width: 100%;
+	height: 50%;
+	bottom: 0;
+	transition: {
+		property: opacity;
+		duration: 0.4s;
+	}
+	pointer-events: none;
+
+	&--visible {
+		@extend .overlay;
+		opacity: 1;
+	}
+
+	&--hidden {
+		@extend .overlay;
+		opacity: 0;
+	}
+
+	&__title {
+		background-color: $color-3;
+		box-shadow: -0.1875rem 0.1875rem 0 0 $color-1;
+		margin-top: 0;
+		font-weight: 400;
+
+		&--photo {
+			@extend .overlay__title;
+
+			@media screen {
+				@media #{$portrait} {
+					@include fluidContent(margin-bottom, 0.3125rem, 0.625, 0.3125, 100vw);
+					@include fluidContent(padding-right, 0.3125rem, 0.625, 0.3125, 100vw);
+					@include fluidContent(padding-left, 0.3125rem, 0.625, 0.3125, 100vw);
+					@include fluidContent(border-radius, 0.1875rem, 0.3125, 0.1875, 100vw);
+
+					@media #{$mq-w1080-up} {
+						margin-bottom: 0.625rem;
+						padding: {
+							right: 0.625rem;
+							left: 0.625rem;
+						}
+						border-radius: 0.3125rem;
+					}
+				}
+
+				@media #{$landscape} {
+					@include fluidContent(margin-bottom, 0.3125rem, 1.25, 0.3125, 100vh);
+					@include fluidContent(padding-right, 0.3125rem, 0.625, 0.3125, 100vh);
+					@include fluidContent(padding-left, 0.3125rem, 0.625, 0.3125, 100vh);
+					@include fluidContent(border-radius, 0.1875rem, 0.3125, 0.1875, 100vh);
+
+					@media #{$mq-h1080-up} {
+						margin-bottom: 1.25rem;
+						padding: {
+							right: 0.625rem;
+							left: 0.625rem;
+						}
+						border-radius: 0.3125rem;
+					}
+				}
+			}
+		}
+
+		&--project {
+			@extend .overlay__title;
+
+			@media screen {
+				@media #{$portrait} {
+					@include fluidContent(font-size, 1.25rem, 1.75, 1.25, 100vw);
+					@include fluidContent(margin-bottom, 0.625rem, 0.9375, 0.625, 100vw);
+					@include fluidContent(border-radius, 0.1875rem, 0.3125, 0.1875, 100vw);
+					@include fluidContent(padding-right, 0.3125rem, 0.625, 0.3125, 100vw);
+					@include fluidContent(padding-left, 0.3125rem, 0.625, 0.3125, 100vw);
+
+					@media #{$mq-w1080-up} {
+						font-size: 1.75rem;
+						margin-bottom: 0.9375rem;
+						border-radius: 0.3125rem;
+						padding: {
+							right: 0.625rem;
+							left: 0.625rem;
+						}
+					}
+				}
+
+				@media #{$landscape} {
+					@include fluidContent(font-size, 1.125rem, 1.875, 1.125, 100vh);
+					@include fluidContent(margin-bottom, 0.625rem, 1.875, 0.625, 100vh);
+					@include fluidContent(padding-right, 0.3125rem, 0.625, 0.3125, 100vh);
+					@include fluidContent(padding-left, 0.3125rem, 0.625, 0.3125, 100vh);
+					@include fluidContent(border-radius, 0.1875rem, 0.3125, 0.1875, 100vh);
+
+					@media #{$mq-h1080-up} {
+						font-size: 1.875rem;
+						margin-bottom: 1.875rem;
+						padding: {
+							right: 0.625rem;
+							left: 0.625rem;
+						}
+						border-radius: 0.3125rem;
+					}
+				}
+			}
+		}
+	}
+
+	&__subject {
+		text-transform: uppercase;
+
+		@media screen {
+			@media #{$portrait} {
+				@include fluidContent(font-size, 1rem, 1.5, 1, 100vw);
+
+				@media #{$mq-w1080-up} {
+					font-size: 24px;
+				}
+			}
+
+			@media #{$landscape} {
+				@include fluidContent(font-size, 0.8125rem, 1.75, 0.8125, 100vh);
+
+				@media #{$mq-h1080-up} {
+					font-size: 1.75rem;
+				}
+			}
+		}
+	}
+
+	&__city {
+		color: $color-6;
+
+		@media screen {
+			@media #{$portrait} {
+				@include fluidContent(font-size, 0.875rem, 1.25, 0.875, 100vw);
+
+				@media #{$mq-w1080-up} {
+					font-size: 1.25rem;
+				}
+			}
+
+			@media #{$landscape} {
+				@include fluidContent(font-size, 0.625rem, 1.25, 0.625, 100vh);
+
+				@media #{$mq-h1080-up} {
+					font-size: 1.25rem;
+				}
+			}
+		}
+	}
+
+	&__country {
+		@extend .overlay__city;
+	}
+}

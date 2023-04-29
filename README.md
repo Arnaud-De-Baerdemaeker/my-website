@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Mon premier site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bienvenue !
 
-## Available Scripts
+Ce projet est le résultat de mois d'apprentissage du développement web, couplé à ma passion pour la photographie, que je suis fier aujourd'hui de mettre en ligne.
 
-In the project directory, you can run:
+Au fil du temps, je continuerai à travailler dessus, aussi bien pour ajouter de nouvelles photos que pour améliorer certaines choses, voire ajouter de nouvelles fonctionnalités.
 
-### `npm start`
+Merci pour votre visite !
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+***Arnaud De Baerdemaeker***
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Caractéristiques
 
-### `npm test`
+Le site a été développé en ReactJS et mis en page avec SCSS.
+L'API de Flickr permet de récupérer les photos et leurs tags stockés sur leurs serveurs et de les afficher.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Versions
 
-### `npm run build`
+### 3.0.0
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Mise à niveau des outils de développement.
+* Utilisation de Netlify Functions pour faire les appels API.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2.3.0
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Mise en place d'un deuxième appel à l'API pour récupérer les tags dans leur forme brute.
+* Affichage d'un message d'erreur en cas d'échec de l'appel à l'API.
+* Affichage d'un message informant l'utilisateur que le site utilise l'API de Flickr.
+* Utilisation de session storage afin d'éviter de répéter les appels API s'il ont déjà été fait une première fois. Les données stockées dans le navigateur de l'utilisateur sont purgées dès la fermeture de l'onglet.
 
-### `npm run eject`
+### 2.2.0
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* Ajout d'une page portfolio
+* Modifications visuelles
+* Améliorations au niveau du code
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2.1.0
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* Utilisation de l'API de Flickr pour récupérer les photos et leurs données
+* Amélioration du design
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 2.0.2
 
-## Learn More
+* Correction du comportement de l'arrière-plan de l'en-tête
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 2.0.1
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Correction de la déclaration d'un chemin
 
-### Code Splitting
+### 2.0.0
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* Refonte totale de l'apparence du site
+* Fusion de la page d'accueil et de la page A propos
+* Ajout du menu dans un volet
+* Ajout de quelques nouvelles photos
+* Structure de la page Galerie plus simplifiée
+* Ajout de diverses animations
 
-### Analyzing the Bundle Size
+### 1.1.2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* Correction d'un bug qui empêche le rechargement des pages en dehors de la page d'accueil
 
-### Making a Progressive Web App
+### 1.1.1
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* Amélioration de la navigation en rétablissant la vue en haut de page en arrivant sur la liste des photos
 
-### Advanced Configuration
+### 1.1.0
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* Ajout d'un mode sombre
+* Redesign de la liste des années de la page Galerie
+* Changement de l'icône de la page À Propos
 
-### Deployment
+### 1.0.2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+* Correction d'une URL
 
-### `npm run build` fails to minify
+### 1.0.1
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Correction d'une URL pour l'affichage correct du style de la barre de navigation
+* Amélioration du CSS du footer
+* Ajout de la version du site dans le footer
+
+### 1.0.0
+
+* Mise en ligne

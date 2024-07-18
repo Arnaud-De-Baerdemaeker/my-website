@@ -41,76 +41,21 @@ class Gallery extends Component {
 	}
 
 	async getPhotos() {
-		await axios({
-			method: "GET",
-			url: "/.netlify/functions/getPhotos"
-		})
+		this.setState({
+			isFetchLoading: true
+		});
+
+		await axios.get("/api/getPhotos")
 		.then(results => {
-			this.photos = results.data.photoset.photo;
-
-			const promises = this.photos.map(async photo => {
-				return await axios({
-					method: "GET",
-					url: "/.netlify/functions/getTags",
-					params: {
-						photo_id: photo.id,
-					}
-				});
+			this.setState({
+				photos: results.data.photoset.photo,
+				isFetchLoading: false
 			});
 
-			Promise.all(promises)
-			.then(results => {
-				this.tags = results;
-
-				let finalResult = [];
-
-				this.photos.map(photo => (
-					this.tags.find(tags => (
-						tags.data.photo.id === photo.id && finalResult.push({
-							photo: {
-								id: photo.id,
-								url_c: photo.url_c,
-								url_o: photo.url_o
-							},
-							tags: {
-								subject: tags.data.photo.tags.tag.length === 3 ? tags.data.photo.tags.tag[0].raw : null,
-								city: tags.data.photo.tags.tag.length === 3 ? tags.data.photo.tags.tag[1].raw : tags.data.photo.tags.tag[0].raw,
-								country: tags.data.photo.tags.tag.length === 3 ? tags.data.photo.tags.tag[2].raw : tags.data.photo.tags.tag[1].raw
-							}
-						})
-					))
-				));
-
-				let photos = [];
-
-				finalResult.map(photo => (
-					photos.push({
-						id: photo.photo.id,
-						url_c: photo.photo.url_c,
-						url_o: photo.photo.url_o,
-						tags: {
-							subject: photo.tags.subject,
-							city: photo.tags.city,
-							country: photo.tags.country
-						}
-					})
-				));
-
-				sessionStorage.setItem("photos", JSON.stringify(photos));
-
-				this.setState({
-					photos: photos,
-					isFetchLoading: false
-				});
-			})
-			.catch(() => {
-				this.setState({
-					isFetchLoading: false,
-					hasFetchFailed: true
-				});
-			});
+			sessionStorage.setItem("photos", JSON.stringify(results.data.photoset.photo));
 		})
-		.catch(() => {
+		.catch(error => {
+			console.log(error);
 			this.setState({
 				isFetchLoading: false,
 				hasFetchFailed: true
@@ -166,17 +111,13 @@ class Gallery extends Component {
 
 		this.props.backToTop();
 
-		// Check if the photos' data is stored in the session storage and load it instaed of making a new API call if so
+		// Check if the photos' data is stored in the session storage and load it instead of making a new API call
 		if(sessionStorage.getItem("photos")) {
 			this.setState({
 				photos: JSON.parse(sessionStorage.getItem("photos"))
 			});
 		}
 		else {
-			this.setState({
-				isFetchLoading: true
-			});
-
 			this.getPhotos();
 		}
 	}
@@ -194,6 +135,8 @@ class Gallery extends Component {
 				this.props.revealOnScroll(elementsToReveal);
 			});
 		}
+
+		console.log(this.state.photos);
 	}
 
 	componentWillUnmount() {
@@ -255,7 +198,7 @@ class Gallery extends Component {
 										key={
 											sessionStorage.getItem("photos")
 											? photo.id
-											: photo.photo.id
+											: photo.id
 										}
 										cardClick={this.handleClick}
 										cardContent={
@@ -263,29 +206,19 @@ class Gallery extends Component {
 												src={
 													sessionStorage.getItem("photos")
 													? photo.url_c
-													: photo.photo.url_c
+													: photo.url_c
 												}
-												alt={`${photo.tags.subject}, ${photo.tags.city} ${photo.tags.country}`}
+												alt={""}
 												data-hd={
 													sessionStorage.getItem("photos")
 													? photo.url_o
-													: photo.photo.url_o
+													: photo.url_o
 												}
 												loading={"lazy"}
 												className={"card__image"}
 											/>
 										}
 										cardClass={"card--photo view--hidden"}
-										cardOverlayContent={
-											<>
-												<span className={"overlay__subject"}>{photo.tags.subject}</span>
-												{" "}
-												<span className={"overlay__city"}>{photo.tags.city}</span>
-												{" "}
-												<span className={"overlay__country"}>{photo.tags.country}</span>
-											</>
-										}
-										cardOverlayTitleClass={"overlay__title--photo"}
 									/>
 								)}
 							</ul>

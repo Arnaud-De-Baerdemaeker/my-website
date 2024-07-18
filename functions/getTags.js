@@ -1,21 +1,32 @@
-import {createFlickr} from "flickr-sdk";
+const axios = require("axios");
 
-exports.handler = async (event) => {
+const handler = async (event) => {
 	try {
-		const {flickr} = createFlickr(process.env.REACT_APP_API_KEY);
-		const request = await flickr("flickr.tags.getListPhoto", {
-			photo_id: event.queryStringParameters.photo_id
+		const request = await axios({
+			method: "GET",
+			url: "https://www.flickr.com/services/rest/?method=flickr.tags.getListPhoto",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			params: {
+				api_key: process.env.REACT_APP_API_KEY,
+				photo_id: event.queryStringParameters.photo_id,
+				format: "json",
+				nojsoncallback: 1,
+			}
 		});
 
 		return {
 			statusCode: 200,
-			body: JSON.stringify(request)
+			body: JSON.stringify(request.data)
 		}
 	}
-	catch(error) {
+	catch (error) {
 		return {
 			statusCode: 500,
-			body: JSON.stringify(error)
+			body: error.toString()
 		}
 	}
 }
+
+module.exports = {handler}

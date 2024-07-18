@@ -104,7 +104,7 @@ class Footer extends Component {
 						{`${year.getUTCFullYear()} • Tous droits réservés`}
 					</p>
 					<p className={"footer__credits"}>
-						{"Version 3.0.0"}
+						{"Version 3.0.2"}
 						<br />
 						{"Ce produit utilise l'API Flickr mais n'est ni approuvé ni certifié par SmugMug, Inc."}
 					</p>

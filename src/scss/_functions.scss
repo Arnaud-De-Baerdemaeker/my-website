@@ -1,0 +1,11 @@
+@function fluidContentPortrait($min-size, $max-size) {
+	$value: calc(#{$min-size}rem + (#{$max-size} - #{$min-size}) * ((100vw - 18.75rem) / (67.5 - 18.75)));
+
+	@return $value;
+}
+
+@function fluidContentLandscape($min-size, $max-size) {
+	$value: calc(#{$min-size}rem + (#{$max-size} - #{$min-size}) * ((100vh - 18.75rem) / (67.5 - 18.75)));
+
+	@return $value;
+}

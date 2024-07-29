@@ -7,6 +7,7 @@
 	z-index: 2;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	background-color: $color-3;
 	transform: translateX(0);
 	transition-property: transform;
@@ -21,13 +22,17 @@
 		display: inherit;
 		align-items: center;
 		width: inherit;
+		max-width: 120rem;
 		height: inherit;
+		max-height: 67.5rem;
 		margin: 0;
 	}
 
 	&__image {
+		z-index: -1;
 		width: 100%;
 		vertical-align: middle;
+		border-radius: 2.5rem;
 
 		@media screen {
 			@media #{$landscape} {

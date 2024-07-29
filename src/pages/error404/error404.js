@@ -19,7 +19,7 @@ class Error404 extends Component {
 					<meta name="description" content="Erreur 404. Page demandée introuvable." />
 					<meta property="og:title" content="Page introuvable - Arnaud De Baerdemaeker" />
 					<meta property="og:type" content="website" />
-					<meta property="og:image" content="https://arnaud-de-baerdemaeker.netlify.app/src/images/404_opengraph.png" />
+					<meta property="og:image" content="https://arnaud-de-baerdemaeker.netlify.app/src/images/opengraph/404_opengraph.png" />
 					<meta property="og:image:width" content="500" />
 					<meta property="og:image:height" content="265" />
 					<meta property="og:image:type" content="image/png" />

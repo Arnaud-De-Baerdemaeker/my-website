@@ -150,7 +150,7 @@ class Gallery extends Component {
 					<meta name="description" content="La galerie de mon site. Découvrez les photos que j'ai prises." />
 					<meta property="og:title" content="Galerie - Arnaud De Baerdemaeker" />
 					<meta property="og:type" content="website" />
-					<meta property="og:image" content="https://arnaud-de-baerdemaeker.netlify.app/src/images/gallery_opengraph.png" />
+					<meta property="og:image" content="https://arnaud-de-baerdemaeker.netlify.app/src/images/opengraph/gallery_opengraph.png" />
 					<meta property="og:image:width" content="500" />
 					<meta property="og:image:height" content="265" />
 					<meta property="og:image:type" content="image/png" />

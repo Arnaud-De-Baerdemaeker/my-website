@@ -40,7 +40,7 @@ class HomePage extends Component {
 					<meta name="description" content="La page d'accueil de mon site. Qui je suis et ce que je fais." />
 					<meta property="og:title" content="Accueil - Arnaud De Baerdemaeker" />
 					<meta property="og:type" content="website" />
-					<meta property="og:image" content="https://arnaud-de-baerdemaeker.netlify.app/src/images/homepage_opengraph.png" />
+					<meta property="og:image" content="https://arnaud-de-baerdemaeker.netlify.app/src/images/opengraph/homepage_opengraph.png" />
 					<meta property="og:image:width" content="500" />
 					<meta property="og:image:height" content="265" />
 					<meta property="og:image:type" content="image/png" />

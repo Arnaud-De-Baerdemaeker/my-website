@@ -74,7 +74,7 @@ class Portfolio extends Component {
 					<meta name="description" content="Le portfolio de mon site. Découvrez les projets que j'ai développés." />
 					<meta property="og:title" content="Portfolio - Arnaud De Baerdemaeker" />
 					<meta property="og:type" content="website" />
-					<meta property="og:image" content="https://arnaud-de-baerdemaeker.netlify.app/src/images/portfolio_opengraph.png" />
+					<meta property="og:image" content="https://arnaud-de-baerdemaeker.netlify.app/src/images/opengraph/portfolio_opengraph.png" />
 					<meta property="og:image:width" content="500" />
 					<meta property="og:image:height" content="265" />
 					<meta property="og:image:type" content="image/png" />

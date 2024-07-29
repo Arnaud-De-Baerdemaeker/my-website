@@ -32,7 +32,7 @@
 
 		@media screen {
 			@media #{$portrait} {
-				@include fluidContent(row-gap, 1.875rem, 9.375, 1.875, 100vw);
+				row-gap: fluidContentPortrait(1.875, 9.375);
 
 				@media #{$mq-w1080-up} {
 					row-gap: 9.375rem;
@@ -40,7 +40,7 @@
 			}
 
 			@media #{$landscape} {
-				@include fluidContent(row-gap, 0.9375rem, 6.25, 0.9375, 100vh);
+				row-gap: fluidContentLandscape(0.9375, 6.25);
 
 				@media #{$mq-h1080-up} {
 					row-gap: 6.25rem;
@@ -65,7 +65,7 @@
 
 		@media screen {
 			@media #{$portrait} {
-				@include fluidContent(font-size, 2.5rem, 6.25, 2.5, 100vw);
+				font-size: fluidContentPortrait(2.5, 6.25);
 
 				@media #{$mq-w1080-up} {
 					font-size: 6.25rem;
@@ -73,7 +73,7 @@
 			}
 
 			@media #{$landscape} {
-				@include fluidContent(font-size, 1.875rem, 5, 1.875, 100vh);
+				font-size: fluidContentLandscape(1.875, 5);
 
 				@media #{$mq-h1080-up} {
 					font-size: 5rem;

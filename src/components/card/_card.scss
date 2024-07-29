@@ -5,7 +5,7 @@
 
 	@media screen {
 		@media #{$portrait} {
-			@include fluidContent(border-radius, 0.3125rem, 0.625, 0.3125, 100vw);
+			border-radius: fluidContentPortrait(0.3125, 0.625);
 
 			@media #{$mq-w600-up} {
 				width: calc(50% - 0.3125rem);
@@ -17,8 +17,8 @@
 		}
 
 		@media #{$landscape} {
-			@include fluidContent(border-radius, 0.3125rem, 0.625, 0.3125, 100vh);
 			width: calc(50% - 0.3125rem);
+			border-radius: fluidContentLandscape(0.3125, 0.625);
 
 			@media #{$mq-h1080-up} {
 				border-radius: 0.625rem;

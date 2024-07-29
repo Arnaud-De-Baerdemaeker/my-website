@@ -26,15 +26,15 @@
 
 		@media screen {
 			@media #{$portrait} {
-				@include fluidContent(width, 15.625rem, 50, 15.625, 100vw);
+				width: fluidContentPortrait(15.625, 50);
 
 				@media #{$mq-w1080-up} {
 					width: 50rem;
 				}
 			}
-	
+
 			@media #{$landscape} {
-				@include fluidContent(width, 25rem, 87.5, 25, 100vh);
+				width: fluidContentLandscape(25, 87.5);
 
 				@media #{$mq-h1080-up} {
 					width: 87.5rem;

@@ -15,8 +15,8 @@
 
 	@media screen {
 		@media #{$portrait} {
-			@include fluidContent(width, 2.25rem, 3, 2.25, 100vw);
-			@include fluidContent(height, 2.25rem, 3, 2.25, 100vw);
+			width: fluidContentPortrait(2.25, 3);
+			height: fluidContentPortrait(2.25, 3);
 
 			@media #{$mq-w1080-up} {
 				width: 3rem;
@@ -25,8 +25,8 @@
 		}
 
 		@media #{$landscape} {
-			@include fluidContent(width, 2.25rem, 3, 2.25, 100vh);
-			@include fluidContent(height, 2.25rem, 3, 2.25, 100vh);
+			width: fluidContentLandscape(2.25, 3);
+			height: fluidContentLandscape(2.25, 3);
 
 			@media #{$mq-h1080-up} {
 				width: 3rem;
@@ -40,7 +40,7 @@
 
 		@media screen {
 			@media #{$portrait} {
-				@include fluidContent(margin-right, 1.25rem, 2.5, 1.25, 100vw);
+				margin-right: fluidContentPortrait(1.25, 2.5);
 
 				@media #{$mq-w1080-up} {
 					margin-right: 2.5rem;
@@ -48,7 +48,7 @@
 			}
 
 			@media #{$landscape} {
-				@include fluidContent(margin-right, 1.25rem, 2.5, 1.25, 100vh);
+				margin-right: fluidContentLandscape(1.25, 2.5);
 
 				@media #{$mq-h1080-up} {
 					margin-right: 2.5rem;

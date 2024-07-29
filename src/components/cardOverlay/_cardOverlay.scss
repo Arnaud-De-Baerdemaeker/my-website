@@ -34,10 +34,10 @@
 
 			@media screen {
 				@media #{$portrait} {
-					@include fluidContent(margin-bottom, 0.3125rem, 0.625, 0.3125, 100vw);
-					@include fluidContent(padding-right, 0.3125rem, 0.625, 0.3125, 100vw);
-					@include fluidContent(padding-left, 0.3125rem, 0.625, 0.3125, 100vw);
-					@include fluidContent(border-radius, 0.1875rem, 0.3125, 0.1875, 100vw);
+					margin-bottom: fluidContentPortrait(0.3125, 0.625);
+					padding-right: fluidContentPortrait(0.3125, 0.625);
+					padding-left: fluidContentPortrait(0.3125, 0.625);
+					border-radius: fluidContentPortrait(0.1875, 0.3125);
 
 					@media #{$mq-w1080-up} {
 						margin-bottom: 0.625rem;
@@ -50,10 +50,10 @@
 				}
 
 				@media #{$landscape} {
-					@include fluidContent(margin-bottom, 0.3125rem, 1.25, 0.3125, 100vh);
-					@include fluidContent(padding-right, 0.3125rem, 0.625, 0.3125, 100vh);
-					@include fluidContent(padding-left, 0.3125rem, 0.625, 0.3125, 100vh);
-					@include fluidContent(border-radius, 0.1875rem, 0.3125, 0.1875, 100vh);
+					margin-bottom: fluidContentLandscape(0.3125, 1.25);
+					padding-right: fluidContentLandscape(0.3125, 0.625);
+					padding-left: fluidContentLandscape(0.3125, 0.625);
+					border-radius: fluidContentLandscape(0.1875, 0.3125);
 
 					@media #{$mq-h1080-up} {
 						margin-bottom: 1.25rem;
@@ -72,11 +72,11 @@
 
 			@media screen {
 				@media #{$portrait} {
-					@include fluidContent(font-size, 1.25rem, 1.75, 1.25, 100vw);
-					@include fluidContent(margin-bottom, 0.625rem, 0.9375, 0.625, 100vw);
-					@include fluidContent(border-radius, 0.1875rem, 0.3125, 0.1875, 100vw);
-					@include fluidContent(padding-right, 0.3125rem, 0.625, 0.3125, 100vw);
-					@include fluidContent(padding-left, 0.3125rem, 0.625, 0.3125, 100vw);
+					font-size: fluidContentPortrait(1.25, 1.75);
+					margin-bottom: fluidContentPortrait(0.625, 0.9375);
+					border-radius: fluidContentPortrait(0.1875, 0.3125);
+					padding-right: fluidContentPortrait(0.3125, 0.625);
+					padding-left: fluidContentPortrait(0.3125, 0.625);
 
 					@media #{$mq-w1080-up} {
 						font-size: 1.75rem;
@@ -90,11 +90,11 @@
 				}
 
 				@media #{$landscape} {
-					@include fluidContent(font-size, 1.125rem, 1.875, 1.125, 100vh);
-					@include fluidContent(margin-bottom, 0.625rem, 1.875, 0.625, 100vh);
-					@include fluidContent(padding-right, 0.3125rem, 0.625, 0.3125, 100vh);
-					@include fluidContent(padding-left, 0.3125rem, 0.625, 0.3125, 100vh);
-					@include fluidContent(border-radius, 0.1875rem, 0.3125, 0.1875, 100vh);
+					font-size: fluidContentLandscape(1.125, 1.875);
+					margin-bottom: fluidContentLandscape(0.625, 1.875);
+					padding-right: fluidContentLandscape(0.3125, 0.625);
+					padding-left: fluidContentLandscape(0.3125, 0.625);
+					border-radius: fluidContentLandscape(0.1875, 0.3125);
 
 					@media #{$mq-h1080-up} {
 						font-size: 1.875rem;
@@ -115,15 +115,15 @@
 
 		@media screen {
 			@media #{$portrait} {
-				@include fluidContent(font-size, 1rem, 1.5, 1, 100vw);
+				font-size: fluidContentPortrait(1, 1.5);
 
 				@media #{$mq-w1080-up} {
-					font-size: 24px;
+					font-size: 1.5rem;
 				}
 			}
 
 			@media #{$landscape} {
-				@include fluidContent(font-size, 0.8125rem, 1.75, 0.8125, 100vh);
+				font-size: fluidContentLandscape(0.8125, 1.75);
 
 				@media #{$mq-h1080-up} {
 					font-size: 1.75rem;
@@ -137,7 +137,7 @@
 
 		@media screen {
 			@media #{$portrait} {
-				@include fluidContent(font-size, 0.875rem, 1.25, 0.875, 100vw);
+				font-size: fluidContentPortrait(0.875, 1.25);
 
 				@media #{$mq-w1080-up} {
 					font-size: 1.25rem;
@@ -145,7 +145,7 @@
 			}
 
 			@media #{$landscape} {
-				@include fluidContent(font-size, 0.625rem, 1.25, 0.625, 100vh);
+				font-size: fluidContentLandscape(0.625, 1.25);
 
 				@media #{$mq-h1080-up} {
 					font-size: 1.25rem;

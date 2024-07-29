@@ -1336,6 +1336,7 @@ body {
   z-index: 2;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: rgb(25, 39, 27);
   transform: translateX(0);
   transition-property: transform;
@@ -1348,12 +1349,16 @@ body {
   display: inherit;
   align-items: center;
   width: inherit;
+  max-width: 120rem;
   height: inherit;
+  max-height: 67.5rem;
   margin: 0;
 }
 .modal__image {
+  z-index: -1;
   width: 100%;
   vertical-align: middle;
+  border-radius: 2.5rem;
 }
 @media screen and (orientation: landscape) {
   .modal__image {

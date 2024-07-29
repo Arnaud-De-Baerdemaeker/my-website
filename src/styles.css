@@ -225,7 +225,7 @@ body {
   opacity: 1;
   transform: translateY(0);
   transition-property: opacity transform;
-  transition-duration: 2s;
+  transition-duration: 1s;
 }
 
 .scrollBlocked {
@@ -453,7 +453,7 @@ body {
 /* HEADER */
 .header {
   animation-name: reveal;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-delay: 0.5s;
   animation-fill-mode: both;
   position: fixed;
@@ -722,12 +722,12 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgb(25, 39, 27);
-  transform: translate(0, 0);
+  transform: translateX(0);
   transition-property: transform;
-  transition-duration: 0.8s;
+  transition-duration: 0.5s;
 }
 .menu--closed {
-  transform: translate(100%, 0);
+  transform: translateX(100%);
 }
 .menu__list {
   display: flex;
@@ -874,7 +874,7 @@ body {
 }
 .hero__title, .hero__title--404, .hero__title--gallery, .hero__title--portfolio, .hero__title--homepage {
   animation-name: reveal;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-delay: 0.5s;
   animation-fill-mode: both;
   animation-delay: 1s;
@@ -991,7 +991,7 @@ body {
 }
 .hero__scrollDown {
   animation-name: reveal;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-delay: 0.5s;
   animation-fill-mode: both;
   animation-delay: 1.5s;
@@ -1031,7 +1031,7 @@ body {
 }
 .hero__backToHomepage {
   animation-name: reveal;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-delay: 0.5s;
   animation-fill-mode: both;
   z-index: 1;
@@ -1340,7 +1340,7 @@ body {
   background-color: rgb(25, 39, 27);
   transform: translateX(0);
   transition-property: transform;
-  transition-duration: 0.8s;
+  transition-duration: 0.5s;
 }
 .modal--hidden {
   transform: translateX(-100%);

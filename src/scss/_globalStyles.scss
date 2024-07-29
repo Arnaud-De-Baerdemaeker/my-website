@@ -20,7 +20,7 @@ body {
 .view {
 	&--hidden {
 		opacity: 0;
-		transform: translateY(-20px);
+		transform: translateY(-1.25rem);
 	}
 
 	&--visible {

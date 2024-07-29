@@ -1,12 +1,8 @@
 // MIXINS
-@mixin fluidContent($property, $min-size-rem, $max-size, $min-size, $max-viewport-vw-vh) {
-	#{$property}: calc(#{$min-size-rem} + (#{$max-size} - #{$min-size}) * ((#{$max-viewport-vw-vh} - 18.75rem) / (67.5 - 18.75)));
-}
-
 @mixin revealOnLoad {
 	animation: {
 		name: reveal;
-		duration: 2s;
+		duration: 1s;
 		delay: 0.5s;
 		fill-mode: both;
 	}

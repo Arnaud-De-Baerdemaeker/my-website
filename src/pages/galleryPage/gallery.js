@@ -3,6 +3,7 @@
 // By Arnaud De Baerdemaeker
 
 import React, {Component} from "react";
+import {Helmet} from "react-helmet-async";
 import axios from "axios";
 
 import Header from "../../components/header/header";
@@ -28,7 +29,6 @@ class Gallery extends Component {
 			isModalOpen: false
 		}
 		this.body = document.querySelector("body");
-		this.tabTitle = "Galerie | Arnaud De Baerdemaeker";
 		this.photos = null;
 		this.tags = null;
 		this.timeout = null;
@@ -107,8 +107,6 @@ class Gallery extends Component {
 	}
 
 	componentDidMount() {
-		this.props.setTabTitle(this.tabTitle);
-
 		this.props.backToTop();
 
 		// Check if the photos' data is stored in the session storage and load it instead of making a new API call
@@ -148,6 +146,18 @@ class Gallery extends Component {
 	render() {
 		return(
 			<>
+				<Helmet>
+					<meta name="description" content="La galerie de mon site. Découvrez les photos que j'ai prises." />
+					<meta property="og:title" content="Galerie - Arnaud De Baerdemaeker" />
+					<meta property="og:type" content="website" />
+					<meta property="og:image" content="https://arnaud-de-baerdemaeker.netlify.app/src/images/gallery_opengraph.png" />
+					<meta property="og:image:width" content="500" />
+					<meta property="og:image:height" content="265" />
+					<meta property="og:image:type" content="image/png" />
+					<meta property="og:url" content="https://arnaud-de-baerdemaeker.netlify.app/galerie" />
+					<meta property="og:locale" content="fr_BE" />
+					<title>Galerie - Arnaud De Baerdemaeker</title>
+				</Helmet>
 				<Header
 					isMenuOpen={this.props.isMenuOpen}
 					headerRef={this.props.headerRef}

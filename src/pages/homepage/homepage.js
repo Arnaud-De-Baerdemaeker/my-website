@@ -3,6 +3,7 @@
 // By Arnaud De Baerdemaeker
 
 import React, {Component} from "react";
+import {Helmet} from "react-helmet-async";
 
 import Header from "../../components/header/header";
 import Navigation from "../../components/navigation/navigation";
@@ -13,14 +14,7 @@ import Footer from "../../components/footer/footer";
 import myPhoto from "../../images/moi.png";
 
 class HomePage extends Component {
-	constructor(props) {
-		super(props);
-		this.tabTitle = "Accueil | Arnaud De Baerdemaeker";
-	}
-
 	componentDidMount() {
-		this.props.setTabTitle(this.tabTitle);
-
 		this.props.backToTop();
 
 		const elementsToHide = document.querySelectorAll(".svg__background, .homepage__introduction, .homepage__title, .homepage__paragraph");
@@ -42,6 +36,18 @@ class HomePage extends Component {
 	render() {
 		return (
 			<>
+				<Helmet>
+					<meta name="description" content="La page d'accueil de mon site. Qui je suis et ce que je fais." />
+					<meta property="og:title" content="Accueil - Arnaud De Baerdemaeker" />
+					<meta property="og:type" content="website" />
+					<meta property="og:image" content="https://arnaud-de-baerdemaeker.netlify.app/src/images/homepage_opengraph.png" />
+					<meta property="og:image:width" content="500" />
+					<meta property="og:image:height" content="265" />
+					<meta property="og:image:type" content="image/png" />
+					<meta property="og:url" content="https://arnaud-de-baerdemaeker.netlify.app" />
+					<meta property="og:locale" content="fr_BE" />
+					<title>Accueil - Arnaud De Baerdemaeker</title>
+				</Helmet>
 				<Header
 					isMenuOpen={this.props.isMenuOpen}
 					headerRef={this.props.headerRef}

@@ -4,6 +4,7 @@
 
 import React, {Component, createRef} from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {HelmetProvider} from "react-helmet-async";
 
 import HomePage from "./pages/homepage/homepage";
 import Gallery from "./pages/galleryPage/gallery";
@@ -16,20 +17,14 @@ class App extends Component {
 		this.state = {
 			isMenuOpen: false
 		};
-		this.elements = null;
 
 		this.headerRef = createRef();
 
-		this.setTabTitle = this.setTabTitle.bind(this);
 		this.backToTop = this.backToTop.bind(this);
 		this.toggleMenu = this.toggleMenu.bind(this);
 		this.closeMenu = this.closeMenu.bind(this);
 		this.applyHideClass = this.applyHideClass.bind(this);
 		this.revealOnScroll = this.revealOnScroll.bind(this);
-	}
-
-	setTabTitle(title) {
-		document.title = title;
 	}
 
 	backToTop() {
@@ -75,69 +70,67 @@ class App extends Component {
 
 	render() {
 		return (
-			<BrowserRouter>
-				<Routes>
-					<Route
-						path={"/galerie"}
-						element={
-							<Gallery
-								isMenuOpen={this.state.isMenuOpen}
-								headerRef={this.headerRef}
-								setTabTitle={this.setTabTitle}
-								backToTop={this.backToTop}
-								toggleMenu={this.toggleMenu}
-								closeMenu={this.closeMenu}
-								applyHideClass={this.applyHideClass}
-								revealOnScroll={this.revealOnScroll}
-							/>
-						}
-					/>
-					<Route
-						path={"/portfolio"}
-						element={
-							<Portfolio
-								isMenuOpen={this.state.isMenuOpen}
-								headerRef={this.headerRef}
-								setTabTitle={this.setTabTitle}
-								backToTop={this.backToTop}
-								toggleMenu={this.toggleMenu}
-								closeMenu={this.closeMenu}
-								applyHideClass={this.applyHideClass}
-								revealOnScroll={this.revealOnScroll}
-							/>
-						}
-					/>
-					<Route
-						path={"/"}
-						element={
-							<HomePage
-								isMenuOpen={this.state.isMenuOpen}
-								headerRef={this.headerRef}
-								setTabTitle={this.setTabTitle}
-								backToTop={this.backToTop}
-								toggleMenu={this.toggleMenu}
-								closeMenu={this.closeMenu}
-								applyHideClass={this.applyHideClass}
-								revealOnScroll={this.revealOnScroll}
-							/>
-						}
-					/>
-					<Route
-						path="*"
-						element={
-							<Error404
-								isMenuOpen={this.state.isMenuOpen}
-								headerRef={this.headerRef}
-								setTabTitle={this.setTabTitle}
-								toggleMenu={this.toggleMenu}
-								closeMenu={this.closeMenu}
-								applyHideClass={this.applyHideClass}
-								revealOnScroll={this.revealOnScroll}
-							/>
-						}
-					/>
-				</Routes>
-			</BrowserRouter>
+			<HelmetProvider>
+				<BrowserRouter>
+					<Routes>
+						<Route
+							path={"/galerie"}
+							element={
+								<Gallery
+									isMenuOpen={this.state.isMenuOpen}
+									headerRef={this.headerRef}
+									backToTop={this.backToTop}
+									toggleMenu={this.toggleMenu}
+									closeMenu={this.closeMenu}
+									applyHideClass={this.applyHideClass}
+									revealOnScroll={this.revealOnScroll}
+								/>
+							}
+						/>
+						<Route
+							path={"/portfolio"}
+							element={
+								<Portfolio
+									isMenuOpen={this.state.isMenuOpen}
+									headerRef={this.headerRef}
+									backToTop={this.backToTop}
+									toggleMenu={this.toggleMenu}
+									closeMenu={this.closeMenu}
+									applyHideClass={this.applyHideClass}
+									revealOnScroll={this.revealOnScroll}
+								/>
+							}
+						/>
+						<Route
+							path={"/"}
+							element={
+								<HomePage
+									isMenuOpen={this.state.isMenuOpen}
+									headerRef={this.headerRef}
+									backToTop={this.backToTop}
+									toggleMenu={this.toggleMenu}
+									closeMenu={this.closeMenu}
+									applyHideClass={this.applyHideClass}
+									revealOnScroll={this.revealOnScroll}
+								/>
+							}
+						/>
+						<Route
+							path={"*"}
+							element={
+								<Error404
+									isMenuOpen={this.state.isMenuOpen}
+									headerRef={this.headerRef}
+									toggleMenu={this.toggleMenu}
+									closeMenu={this.closeMenu}
+									applyHideClass={this.applyHideClass}
+									revealOnScroll={this.revealOnScroll}
+								/>
+							}
+						/>
+					</Routes>
+				</BrowserRouter>
+			</HelmetProvider>
 		);
 	}
 }

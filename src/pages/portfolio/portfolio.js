@@ -3,6 +3,7 @@
 // By Arnaud De Baerdemaeker
 
 import React, {Component} from "react";
+import {Helmet} from "react-helmet-async";
 
 import Header from "../../components/header/header";
 import Navigation from "../../components/navigation/navigation";
@@ -19,7 +20,6 @@ import solarSystem from "../../images/solarSystem.png";
 class Portfolio extends Component {
 	constructor(props) {
 		super(props);
-		this.tabTitle = "Portfolio | Arnaud De Baerdemaeker";
 		this.projects = [
 			{
 				title: "Mon site",
@@ -49,8 +49,6 @@ class Portfolio extends Component {
 	}
 
 	componentDidMount() {
-		this.props.setTabTitle(this.tabTitle);
-
 		this.props.backToTop();
 
 		const elementsToHide = document.querySelectorAll(".card--project");
@@ -72,6 +70,18 @@ class Portfolio extends Component {
 	render() {
 		return(
 			<>
+				<Helmet>
+					<meta name="description" content="Le portfolio de mon site. Découvrez les projets que j'ai développés." />
+					<meta property="og:title" content="Portfolio - Arnaud De Baerdemaeker" />
+					<meta property="og:type" content="website" />
+					<meta property="og:image" content="https://arnaud-de-baerdemaeker.netlify.app/src/images/portfolio_opengraph.png" />
+					<meta property="og:image:width" content="500" />
+					<meta property="og:image:height" content="265" />
+					<meta property="og:image:type" content="image/png" />
+					<meta property="og:url" content="https://arnaud-de-baerdemaeker.netlify.app/portfolio" />
+					<meta property="og:locale" content="fr_BE" />
+					<title>Portfolio - Arnaud De Baerdemaeker</title>
+				</Helmet>
 				<Header
 					isMenuOpen={this.props.isMenuOpen}
 					headerRef={this.props.headerRef}

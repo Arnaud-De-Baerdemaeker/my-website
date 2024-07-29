@@ -1359,6 +1359,7 @@ body {
   width: 100%;
   vertical-align: middle;
   border-radius: 2.5rem;
+  aspect-ratio: 16/9;
 }
 @media screen and (orientation: landscape) {
   .modal__image {

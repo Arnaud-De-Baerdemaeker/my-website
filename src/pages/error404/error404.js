@@ -37,12 +37,12 @@ class Error404 extends Component {
 				<Hero
 					heroContainerClass={" hero__background--404"}
 					heroTitleClass={"hero__title--404"}
-					heroTitleContent={"La page recherchée n'existe pas"}
+					heroTitleContent={"La page demandée n'existe pas"}
 					heroBackToHomepage={
 						<NavLink
 							exact
 							to={"/"}
-							className={"link__backToHomepage"}
+							className={"hero__backToHomepage"}
 						>
 							{"Revenir à l'accueil"}
 						</NavLink>

@@ -47,14 +47,14 @@ class Header extends Component {
 					>
 						<div className="name__icon">
 							<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M27 4C25.5 0.999997 21.5 3 23 6L43 46C44.5 49 48.5 47 47 44L27 4Z" fill="white"/>
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M29 28C32.3541 27.9991 32.3541 32.4991 29 32.5C21.3442 32.5 17.5317 32.5 14.7792 34.208C12.0488 35.9023 10.3614 39.2773 7 46C5.49996 49 1.49994 47 2.99999 44C6.99027 36.0195 8.99026 32.0195 12.2263 30.0146C15.4781 28 19.9781 28 29 28Z" fill="white"/>
+								<path fillRule="evenodd" clipRule="evenodd" d="M27 4C25.5 0.999997 21.5 3 23 6L43 46C44.5 49 48.5 47 47 44L27 4Z" fill="white"/>
+								<path fillRule="evenodd" clipRule="evenodd" d="M29 28C32.3541 27.9991 32.3541 32.4991 29 32.5C21.3442 32.5 17.5317 32.5 14.7792 34.208C12.0488 35.9023 10.3614 39.2773 7 46C5.49996 49 1.49994 47 2.99999 44C6.99027 36.0195 8.99026 32.0195 12.2263 30.0146C15.4781 28 19.9781 28 29 28Z" fill="white"/>
 								<circle cx="20.245" cy="14.245" r="2.245" fill="white"/>
 								<circle cx="16.245" cy="22.245" r="2.245" fill="white"/>
 							</svg>
 						</div>
 
-						<div class="name__text">
+						<div className="name__text">
 							{"Arnaud"}
 							<br />
 							{"De Baerdemaeker"}

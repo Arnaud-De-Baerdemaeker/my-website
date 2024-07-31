@@ -40,7 +40,7 @@
 
 		@media screen {
 			@media #{$portrait} {
-				margin-right: fluidContentPortrait(1.25, 2.5);
+				margin-right: fluidContentPortrait(0.625, 2.5);
 
 				@media #{$mq-w1080-up} {
 					margin-right: 2.5rem;

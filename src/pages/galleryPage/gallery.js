@@ -19,12 +19,9 @@ class Gallery extends Component {
 		super(props);
 		this.state = {
 			photos: null,
+			hdPicture: null,
 			isFetchLoading: false,
 			hasFetchFailed: false,
-			hdPicture: {
-				src: null,
-				alt: null
-			},
 			isModalOpen: false
 		}
 		this.body = document.querySelector("body");
@@ -33,9 +30,9 @@ class Gallery extends Component {
 		this.timeout = null;
 
 		this.getPhotos = this.getPhotos.bind(this);
+		this.getOriginalSizePhoto = this.getOriginalSizePhoto.bind(this);
 		this.toggleModal = this.toggleModal.bind(this);
 		this.handleClick = this.handleClick.bind(this);
-		this.getDataFromTarget = this.getDataFromTarget.bind(this);
 		this.removeScrollLock = this.removeScrollLock.bind(this);
 	}
 
@@ -46,15 +43,56 @@ class Gallery extends Component {
 
 		await axios.get("/api/getPhotos")
 		.then(results => {
+			let photos = [];
+
+			results.data.photoset.photo.map(result => {
+				photos.push({
+					id: result.id,
+					url_c: result.url_c
+				});
+			});
+
 			this.setState({
-				photos: results.data.photoset.photo,
+				photos: photos,
 				isFetchLoading: false
 			});
 
-			sessionStorage.setItem("photos", JSON.stringify(results.data.photoset.photo));
+			sessionStorage.setItem("photos", JSON.stringify(photos));
 		})
-		.catch(error => {
-			console.log(error);
+		.catch(() => {
+			this.setState({
+				isFetchLoading: false,
+				hasFetchFailed: true
+			});
+		});
+	}
+
+	async getOriginalSizePhoto(click) {
+		this.setState({
+			isFetchLoading: true
+		});
+
+		await axios.get("/api/getOriginalSizePhoto", {
+			params: {
+				photo_id: click.target.parentElement.attributes["dataphotoid"].value
+			}
+		})
+		.then(results => {
+			this.setState({
+				hdPicture: results.data.sizes.size[12].source
+			});
+
+			let photos = JSON.parse(sessionStorage.getItem("photos"));
+
+			photos.map((photo, index) => {
+				if(photo.id === click.target.parentElement.attributes["dataphotoid"].value) {
+					photos[index].hdPhoto = results.data.sizes.size[12].source
+				}
+			});
+
+			sessionStorage.setItem("photos", JSON.stringify(photos));
+		})
+		.catch(() => {
 			this.setState({
 				isFetchLoading: false,
 				hasFetchFailed: true
@@ -86,18 +124,8 @@ class Gallery extends Component {
 	}
 
 	handleClick(click) {
-		this.getDataFromTarget(click);
+		this.getOriginalSizePhoto(click);
 		this.toggleModal();
-	}
-
-	getDataFromTarget(click) {
-		click.preventDefault();
-		this.setState({
-			hdPicture: {
-				src: click.target.dataset.hd,
-				alt: click.target.alt
-			}
-		});
 	}
 
 	removeScrollLock() {
@@ -132,8 +160,6 @@ class Gallery extends Component {
 				this.props.revealOnScroll(elementsToReveal);
 			});
 		}
-
-		console.log(this.state.photos);
 	}
 
 	componentWillUnmount() {
@@ -182,13 +208,21 @@ class Gallery extends Component {
 											: photo.id
 										}
 										photo={photo}
+										photoId={
+											sessionStorage.getItem("photos")
+											? photo.id
+											: photo.id
+										}
 										cardClick={this.handleClick}
 									/>
 								)}
 							</ul>
 							<Modal
-								hd={this.state.hdPicture.src}
-								imgAlt={this.state.hdPicture.alt}
+								hdPicture={
+									sessionStorage.getItem("photos")
+									? this.state.photos.hdPhoto // TODO : Select the correct element
+									: this.state.hdPicture
+								}
 								isModalOpen={this.state.isModalOpen}
 								toggleModal={this.toggleModal}
 							/>

@@ -46,6 +46,7 @@ class Card extends Component {
 		if(this.props.id === "cardPhotos") {
 			return (
 				<li
+					dataphotoid={this.props.photoId}
 					ref={this.cardRef}
 					onClick={this.props.cardClick}
 					className={"card--photo view--hidden"}
@@ -57,11 +58,6 @@ class Card extends Component {
 							: this.props.photo.url_c
 						}
 						alt={""}
-						data-hd={
-							sessionStorage.getItem("photos")
-							? this.props.photo.url_o
-							: this.props.photo.url_o
-						}
 						loading={"lazy"}
 						className={"card__image"}
 					/>

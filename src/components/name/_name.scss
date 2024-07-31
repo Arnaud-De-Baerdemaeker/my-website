@@ -12,26 +12,21 @@
 			top: 0.625rem;
 			right: 0;
 			bottom: 0.625rem;
-			left: 1.25rem;
 		}
 
 		@media screen {
 			@media #{$portrait} {
-				font-size: fluidContentPortrait(1.5, 2.5);
-				margin-left: fluidContentPortrait(1.25, 2.5);
+				margin-left: fluidContentPortrait(0.625, 2.5);
 
 				@media #{$mq-w1080-up} {
-					font-size: 2.5rem;
 					margin-left: 2.5rem;
 				}
 			}
 
 			@media #{$landscape} {
-				font-size: fluidContentLandscape(1.25, 2.5);
 				margin-left: fluidContentLandscape(1.25, 2.5);
 
 				@media #{$mq-h1080-up} {
-					font-size: 2.5rem;
 					margin-left: 2.5rem;
 				}
 			}
@@ -66,8 +61,77 @@
 	}
 
 	&__link {
+		display: flex;
+		align-items: center;
 		color: inherit;
 		text-decoration: none;
 		-webkit-tap-highlight-color: transparent;
+
+		@media screen {
+			@media #{$portrait} {
+				column-gap: fluidContentPortrait(0.625, 1.25);
+
+				@media #{$mq-w1080-up} {
+					column-gap: 1.25rem;
+				}
+			}
+
+			@media #{$landscape} {
+				column-gap: fluidContentLandscape(0.625, 1.25);
+
+				@media #{$mq-h1080-up} {
+					column-gap: 1.25rem;
+				}
+			}
+		}
+	}
+
+	&__icon {
+		@media screen {
+			@media #{$portrait} {
+				width: fluidContentPortrait(3.125, 5.625);
+				height: fluidContentPortrait(3.125, 5.625);
+
+				@media #{$mq-w1080-up} {
+					width: 5.625rem;
+					height: 5.625rem;
+				}
+			}
+
+			@media #{$landscape} {
+				width: fluidContentLandscape(3.125, 5.625);
+				height: fluidContentLandscape(3.125, 5.625);
+
+				@media #{$mq-h1080-up} {
+					width: 5.625rem;
+					height: 5.625rem;
+				}
+			}
+		}
+
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	&__text {
+		@media screen {
+			@media #{$portrait} {
+				font-size: fluidContentPortrait(1.125, 1.875);
+
+				@media #{$mq-w1080-up} {
+					font-size: 1.875rem;
+				}
+			}
+
+			@media #{$landscape} {
+				font-size: fluidContentLandscape(1.125, 1.875);
+
+				@media #{$mq-h1080-up} {
+					font-size: 1.875rem;
+				}
+			}
+		}
 	}
 }

@@ -8,21 +8,32 @@ import SVG from "../svg/svg";
 
 class FetchError extends Component {
 	render() {
-		return(
-			<div className={"fetchStatus"}>
-				<div className={"fetchStatus__icon"}>
-					<SVG
-						viewBox={"0 0 36 36"}
-						class={this.props.svgClass}
-					>
-						{this.props.svgPath}
-					</SVG>
+		if(this.props.id === "fetchError") {
+			return(
+				<div className={"fetchStatus"}>
+					<div className={"fetchStatus__icon"}>
+						<SVG id={"fetchErrorIcon"} />
+					</div>
+					<p className={"fetchStatus__message"}>
+						{"Un problème est survenu durant le traitement de la requête."}
+						<br />
+						{"Les photos ne peuvent pas être récupérées pour le moment."}
+					</p>
 				</div>
-				<p className={"fetchStatus__message"}>
-					{this.props.message}
-				</p>
-			</div>
-		);
+			);
+		}
+		else if(this.props.id === "fetchLoading") {
+			return(
+				<div className={"fetchStatus"}>
+					<div className={"fetchStatus__icon"}>
+						<SVG id={"fetchLoadingIcon"} />
+					</div>
+					<p className={"fetchStatus__message"}>
+						{"Chargement en cours..."}
+					</p>
+				</div>
+			);
+		}
 	}
 }
 

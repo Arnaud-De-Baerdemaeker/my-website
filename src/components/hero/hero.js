@@ -3,6 +3,9 @@
 // By Arnaud De Baerdemaeker
 
 import React, {Component, createRef} from "react";
+import {NavLink} from "react-router-dom";
+
+import SVG from "../svg/svg";
 
 class Hero extends Component {
 	constructor(props) {
@@ -73,28 +76,104 @@ class Hero extends Component {
 	}
 
 	render() {
-		return (
-			<div className={"hero"}>
-				<div
-					ref={this.heroContainerRef}
-					className={"hero__container" + (
-						this.props.heroContainerClass
-						? this.props.heroContainerClass
-						: ""
-					)}
-				>
+		if(this.props.id === "heroHomepage") {
+			return (
+				<div className={"hero"}>
 					<div
-						ref={this.heroBackFilter}
-						className={"hero__backFilter"}
-					></div>
+						ref={this.heroContainerRef}
+						className={"hero__container hero__background--1"}
+					>
+						<div
+							ref={this.heroBackFilter}
+							className={"hero__backFilter"}
+						></div>
+					</div>
+					<h2 className={"hero__title--homepage"}>
+						<span className={"title__jobPart1"}>{"Développeur "}</span>
+						<span className={"title__jobPart2"}>{"web"}</span>
+						<span className={"title__ampersand"}>{"&"}</span>
+						<span className={"title__hobbyPart1"}>{"Amateur de "}</span>
+						<span className={"title__hobbyPart2"}>{"photographie"}</span>
+					</h2>
+					<div className={"hero__scrollDown"}>
+							<div className="hero__scrollDownContainer">
+								<SVG id={"scrollDownIcon"} />
+							</div>
+						</div>
 				</div>
-				<h2 className={this.props.heroTitleClass}>
-					{this.props.heroTitleContent}
-				</h2>
-				{this.props.heroBackToHomepage ? this.props.heroBackToHomepage : null}
-				{this.props.scrollDownSVG ? this.props.scrollDownSVG : null}
-			</div>
-		);
+			);
+		}
+		else if(this.props.id === "heroGallery") {
+			return (
+				<div className={"hero"}>
+					<div
+						ref={this.heroContainerRef}
+						className={"hero__container hero__background--1"}
+					>
+						<div
+							ref={this.heroBackFilter}
+							className={"hero__backFilter"}
+						></div>
+					</div>
+					<h2 className={"hero__title--gallery"}>
+						Galerie
+					</h2>
+					<div className={"hero__scrollDown"}>
+						<div className="hero__scrollDownContainer">
+							<SVG id={"scrollDownIcon"} />
+						</div>
+					</div>
+				</div>
+			);
+		}
+		else if(this.props.id === "heroPortfolio") {
+			return (
+				<div className={"hero"}>
+					<div
+						ref={this.heroContainerRef}
+						className={"hero__container hero__background--1"}
+					>
+						<div
+							ref={this.heroBackFilter}
+							className={"hero__backFilter"}
+						></div>
+					</div>
+					<h2 className={"hero__title--portfolio"}>
+						Portfolio
+					</h2>
+					<div className={"hero__scrollDown"}>
+						<div className="hero__scrollDownContainer">
+							<SVG id={"scrollDownIcon"} />
+						</div>
+					</div>
+				</div>
+			);
+		}
+		else if(this.props.id === "hero404") {
+			return (
+				<div className={"hero"}>
+					<div
+						ref={this.heroContainerRef}
+						className={"hero__container hero__background--404"}
+					>
+						<div
+							ref={this.heroBackFilter}
+							className={"hero__backFilter"}
+						></div>
+					</div>
+					<h2 className={"hero__title--404"}>
+						La page demandée n'existe pas
+					</h2>
+					<NavLink
+						exact={"true"}
+						to={"/"}
+						className={"hero__backToHomepage"}
+					>
+						{"Revenir à l'accueil"}
+					</NavLink>
+				</div>
+			);
+		}
 	}
 }
 

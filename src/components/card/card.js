@@ -26,12 +26,14 @@ class Card extends Component {
 	}
 
 	componentDidMount() {
-		if("ontouchstart" in window) {
-			this.overlayRef.current.classList.replace("overlay--hidden", "overlay--visible");
-		}
-		else {
-			this.cardRef.current.addEventListener("mouseover", this.hoveringIn);
-			this.cardRef.current.addEventListener("mouseout", this.hoveringOut);
+		if(this.props.id === "cardProjects") {
+			if("ontouchstart" in window) {
+				this.overlayRef.current.classList.replace("overlay--hidden", "overlay--visible");
+			}
+			else {
+				this.cardRef.current.addEventListener("mouseover", this.hoveringIn);
+				this.cardRef.current.addEventListener("mouseout", this.hoveringOut);
+			}
 		}
 	}
 
@@ -41,20 +43,59 @@ class Card extends Component {
 	}
 
 	render() {
-		return(
-			<li
-				ref={this.cardRef}
-				onClick={this.props.cardClick}
-				className={this.props.cardClass}
-			>
-				{this.props.cardContent}
-				<CardOverlay
-					overlayRef={this.overlayRef}
-					overlayContent={this.props.cardOverlayContent}
-					overlayTitleClass={this.props.cardOverlayTitleClass}
-				/>
-			</li>
-		);
+		if(this.props.id === "cardPhotos") {
+			return (
+				<li
+					ref={this.cardRef}
+					onClick={this.props.cardClick}
+					className={"card--photo view--hidden"}
+				>
+					<img
+						src={
+							sessionStorage.getItem("photos")
+							? this.props.photo.url_c
+							: this.props.photo.url_c
+						}
+						alt={""}
+						data-hd={
+							sessionStorage.getItem("photos")
+							? this.props.photo.url_o
+							: this.props.photo.url_o
+						}
+						loading={"lazy"}
+						className={"card__image"}
+					/>
+				</li>
+			);
+		}
+		else if(this.props.id === "cardProjects") {
+			return (
+				<li
+					ref={this.cardRef}
+					onClick={this.props.cardClick}
+					className={"card--project"}
+				>
+					<a
+						href={this.props.project.link && this.props.project.link}
+						target={"_blank"}
+						rel={"noreferrer noopener"}
+						ref={this.imageRef}
+						className={"card__link"}
+					>
+						<img
+							src={this.props.project.image}
+							alt={this.props.project.alt}
+							className={"card__image"}
+						/>
+					</a>
+					<CardOverlay
+						overlayRef={this.overlayRef}
+						overlayContent={this.props.project.title}
+						overlayTitleClass={"overlay__title--project"}
+					/>
+				</li>
+			);
+		}
 	}
 }
 

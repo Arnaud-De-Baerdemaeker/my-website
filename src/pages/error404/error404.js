@@ -3,7 +3,6 @@
 // By Arnaud De Baerdemaeker
 
 import React, {Component} from "react";
-import {NavLink} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
 
 import Header from "../../components/header/header";
@@ -37,20 +36,7 @@ class Error404 extends Component {
 					toggleMenu={this.props.toggleMenu}
 					closeMenu={this.props.closeMenu}
 				/>
-				<Hero
-					heroContainerClass={" hero__background--404"}
-					heroTitleClass={"hero__title--404"}
-					heroTitleContent={"La page demandée n'existe pas"}
-					heroBackToHomepage={
-						<NavLink
-							exact={"true"}
-							to={"/"}
-							className={"hero__backToHomepage"}
-						>
-							{"Revenir à l'accueil"}
-						</NavLink>
-					}
-				/>
+				<Hero id={"hero404"} />
 				<Footer
 					applyHideClass={this.props.applyHideClass}
 					revealOnScroll={this.props.revealOnScroll}

@@ -5,8 +5,8 @@ module.exports.handler = async () => {
 
 	try {
 		const request = await flickr("flickr.photosets.getPhotos", {
-			photoset_id: process.env.REACT_APP_PHOTOSET_ID,
-			extras: "url_o, url_c"
+			photoset_id: "72177720303779286",
+			extras: "url_c"
 		});
 
 		return {

@@ -17,6 +17,7 @@
     "@testing-library/user-event": "^14.5.2",
     "axios": "^1.7.2",
     "flickr-sdk": "^7.0.0-beta.7",
+    "ol": "^10.0.0",
     "qs": "^6.12.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

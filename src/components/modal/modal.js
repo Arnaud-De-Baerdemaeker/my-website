@@ -4,6 +4,7 @@
 
 import React, {Component} from "react";
 
+import FetchStatus from "../fetchStatus/fetchStatus";
 import Button from "../button/button";
 import SVG from "../svg/svg";
 
@@ -15,19 +16,26 @@ class Modal extends Component {
 				? "modal"
 				: "modal--hidden"
 			}>
-				<div className={"modal__imageContainer"}>
-					<img
-						src={this.props.hdPicture}
-						alt={""}
-						className={"modal__image"}
-					/>
-				</div>
-				<Button
-					function={this.props.toggleModal}
-					class={"button__modal"}
-				>
-					<SVG id={"closeIcon"} />
-				</Button>
+				{this.props.isFetchLoading
+					? <FetchStatus id={"fetchLoading"} />
+					: this.props.hasFetchFailed
+					? <FetchStatus id={"fetchError"} />
+					: (<>
+						<div className={"modal__imageContainer"}>
+							<img
+								src={this.props.hdPicture}
+								alt={""}
+								className={"modal__image"}
+							/>
+						</div>
+						<Button
+							function={this.props.toggleModal}
+							class={"button__modal"}
+						>
+							<SVG id={"closeIcon"} />
+						</Button>
+					</>)
+				}
 			</div>
 		);
 	}

@@ -18,7 +18,8 @@ class PhotosMap extends Component {
 		});
 		const layer = L.tileLayer("http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png", {
 			maxZoom: 18,
-			detectRetina: true
+			detectRetina: true,
+			attribution: "© OpenStreetMap contributors, © CartoDB"
 		});
 
 		layer.addTo(map);

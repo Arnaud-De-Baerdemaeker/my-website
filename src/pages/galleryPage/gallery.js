@@ -25,8 +25,6 @@ class Gallery extends Component {
 			isModalOpen: false
 		}
 		this.body = document.querySelector("body");
-		this.photos = null;
-		this.tags = null;
 		this.timeout = null;
 
 		this.getPhotos = this.getPhotos.bind(this);
@@ -79,7 +77,8 @@ class Gallery extends Component {
 		})
 		.then(results => {
 			this.setState({
-				hdPicture: results.data.sizes.size[12].source
+				hdPicture: results.data.sizes.size[12].source,
+				isFetchLoading: false
 			});
 
 			let photos = JSON.parse(sessionStorage.getItem("photos"));
@@ -114,23 +113,25 @@ class Gallery extends Component {
 			this.props.headerRef.current.classList.add("scroll");
 			this.timeout = setTimeout(() => {
 				this.setState({
-					hdPicture: {
-						src: null,
-						alt: null
-					}
+					hdPicture: null
 				});
 			}, 800);
 		}
 	}
 
 	handleClick(click) {
+		this.setState({
+			isFetchLoading: true
+		});
+
 		const photos = JSON.parse(sessionStorage.getItem("photos"));
 
 		photos.forEach(photo => {
 			if(photo.id === click.target.parentElement.attributes["dataphotoid"].value) {
 				if(photo.hdPhoto) {
 					this.setState({
-						hdPicture: photo.hdPhoto
+						hdPicture: photo.hdPhoto,
+						isFetchLoading: false
 					});
 				}
 				else {
@@ -163,7 +164,7 @@ class Gallery extends Component {
 
 	componentDidUpdate(prevState) {
 		if(this.state.photos !== prevState.photos) {
-			const elementsToHide = document.querySelectorAll(".card--photo, .fetchStatus");
+			const elementsToHide = document.querySelectorAll(".card--photo");
 
 			// Apply a class to initially hide the elements
 			this.props.applyHideClass(elementsToHide);
@@ -227,6 +228,8 @@ class Gallery extends Component {
 								hdPicture={this.state.hdPicture}
 								isModalOpen={this.state.isModalOpen}
 								toggleModal={this.toggleModal}
+								isFetchLoading={this.state.isFetchLoading}
+								hasFetchFailed={this.state.hasFetchFailed}
 							/>
 						</>
 						: this.state.hasFetchFailed

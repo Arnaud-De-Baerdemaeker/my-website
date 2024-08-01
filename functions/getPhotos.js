@@ -6,7 +6,7 @@ module.exports.handler = async () => {
 	try {
 		const request = await flickr("flickr.photosets.getPhotos", {
 			photoset_id: "72177720303779286",
-			extras: "url_c"
+			extras: "url_c, geo"
 		});
 
 		return {

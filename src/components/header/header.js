@@ -16,15 +16,16 @@ class Header extends Component {
 	}
 
 	handleHeaderBackground() {
-		if(window.scrollY === 0) {
-			this.props.headerRef.current.classList.remove("scroll");
+		if(window.scrollY > 0) {
+			this.props.headerRef.current.classList.add("scroll");
 		}
 		else {
-			this.props.headerRef.current.classList.add("scroll");
+			this.props.headerRef.current.classList.remove("scroll");
 		}
 	}
 
 	componentDidMount() {
+		this.props.headerRef.current.classList.remove("scroll");
 		window.addEventListener("scroll", this.handleHeaderBackground);
 	}
 

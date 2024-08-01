@@ -2,6 +2,8 @@
 // Started on July 2020
 // By Arnaud De Baerdemaeker
 
+@import '~leaflet/dist/leaflet.css';
+
 @import
 	"scss/variables",
 	"scss/mixins",
@@ -21,5 +23,6 @@
 	"components/fetchStatus/fetchStatus",
 	"components/cardOverlay/cardOverlay",
 	"components/modal/modal",
+	"components/photosMap/photosMap",
 	"components/footer/footer"
 ;

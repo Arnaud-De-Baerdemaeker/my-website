@@ -10,6 +10,7 @@ import Header from "../../components/header/header";
 import Navigation from "../../components/navigation/navigation";
 import Hero from "../../components/hero/hero";
 import FetchStatus from "../../components/fetchStatus/fetchStatus";
+import PhotosMap from "../../components/photosMap/photosMap";
 import Card from "../../components/card/card";
 import Modal from "../../components/modal/modal";
 import Footer from "../../components/footer/footer";
@@ -211,6 +212,7 @@ class Gallery extends Component {
 				/>
 				<Hero id={"heroGallery"} />
 				<main className={"gallery"}>
+					<PhotosMap photos={this.state.photos} />
 					{this.state.photos
 						? <>
 							<ul className={"gallery__list"}>

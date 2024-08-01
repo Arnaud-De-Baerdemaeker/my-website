@@ -45,7 +45,7 @@ class Gallery extends Component {
 		.then(results => {
 			let photos = [];
 
-			results.data.photoset.photo.map(result => {
+			results.data.photoset.photo.forEach(result => {
 				photos.push({
 					id: result.id,
 					url_c: result.url_c
@@ -67,14 +67,14 @@ class Gallery extends Component {
 		});
 	}
 
-	async getOriginalSizePhoto(click) {
+	async getOriginalSizePhoto(photoId) {
 		this.setState({
 			isFetchLoading: true
 		});
 
 		await axios.get("/api/getOriginalSizePhoto", {
 			params: {
-				photo_id: click.target.parentElement.attributes["dataphotoid"].value
+				photo_id: photoId
 			}
 		})
 		.then(results => {
@@ -84,9 +84,9 @@ class Gallery extends Component {
 
 			let photos = JSON.parse(sessionStorage.getItem("photos"));
 
-			photos.map((photo, index) => {
-				if(photo.id === click.target.parentElement.attributes["dataphotoid"].value) {
-					photos[index].hdPhoto = results.data.sizes.size[12].source
+			photos.forEach((photo, index) => {
+				if(photo.id === photoId) {
+					photos[index].hdPhoto = results.data.sizes.size[12].source;
 				}
 			});
 
@@ -124,7 +124,21 @@ class Gallery extends Component {
 	}
 
 	handleClick(click) {
-		this.getOriginalSizePhoto(click);
+		const photos = JSON.parse(sessionStorage.getItem("photos"));
+
+		photos.forEach(photo => {
+			if(photo.id === click.target.parentElement.attributes["dataphotoid"].value) {
+				if(photo.hdPhoto) {
+					this.setState({
+						hdPicture: photo.hdPhoto
+					});
+				}
+				else {
+					this.getOriginalSizePhoto(photo.id);
+				}
+			}
+		});
+
 		this.toggleModal();
 	}
 
@@ -202,27 +216,15 @@ class Gallery extends Component {
 								{this.state.photos.map(photo =>
 									<Card
 										id={"cardPhotos"}
-										key={
-											sessionStorage.getItem("photos")
-											? photo.id
-											: photo.id
-										}
+										key={photo.id}
 										photo={photo}
-										photoId={
-											sessionStorage.getItem("photos")
-											? photo.id
-											: photo.id
-										}
+										photoId={photo.id}
 										cardClick={this.handleClick}
 									/>
 								)}
 							</ul>
 							<Modal
-								hdPicture={
-									sessionStorage.getItem("photos")
-									? this.state.photos.hdPhoto // TODO : Select the correct element
-									: this.state.hdPicture
-								}
+								hdPicture={this.state.hdPicture}
 								isModalOpen={this.state.isModalOpen}
 								toggleModal={this.toggleModal}
 							/>

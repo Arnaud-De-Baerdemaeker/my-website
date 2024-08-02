@@ -47,7 +47,11 @@ class Gallery extends Component {
 			results.data.photoset.photo.forEach(result => {
 				photos.push({
 					id: result.id,
-					url_c: result.url_c
+					url_c: result.url_c,
+					geo: {
+						latitude: result.latitude,
+						longitude: result.longitude
+					}
 				});
 			});
 

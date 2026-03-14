@@ -2,63 +2,46 @@
 // Started on July 2020
 // By Arnaud De Baerdemaeker
 
-import React, {Component, createRef} from "react";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {useRef, useState} from "react";
+import {BrowserRouter, Routes, Route} from "react-router";
 
 import HomePage from "./pages/homepage/homepage";
 import Gallery from "./pages/galleryPage/gallery";
 import Portfolio from "./pages/portfolio/portfolio";
 import Error404 from "./pages/error404/error404";
 
-class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isMenuOpen: false
-		};
-		this.elements = null;
+const App = () => {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	// let elements = null;
+	const headerRef = useRef();
 
-		this.headerRef = createRef();
-
-		this.setTabTitle = this.setTabTitle.bind(this);
-		this.backToTop = this.backToTop.bind(this);
-		this.toggleMenu = this.toggleMenu.bind(this);
-		this.closeMenu = this.closeMenu.bind(this);
-		this.applyHideClass = this.applyHideClass.bind(this);
-		this.revealOnScroll = this.revealOnScroll.bind(this);
-	}
-
-	setTabTitle(title) {
+	const setTabTitle = (title) => {
 		document.title = title;
 	}
 
-	backToTop() {
+	const backToTop = () => {
 		if (window.scrollY !== 0) {
 			window.scrollTo(0, 0);
 		}
 	}
 
-	toggleMenu() {
-		this.setState(state => ({
-			isMenuOpen: !state.isMenuOpen
-		}));
+	const toggleMenu = () => {
+		setIsMenuOpen(!isMenuOpen);
 	}
 
-	closeMenu() {
-		if(this.state.isMenuOpen === true) {
-			this.setState({
-				isMenuOpen: false
-			});
+	const closeMenu = () => {
+		if(isMenuOpen === true) {
+			setIsMenuOpen(false);
 		}
 	}
 
-	applyHideClass(elements) {
+	const applyHideClass = (elements) => {
 		elements.forEach(element => {
 			element.classList.add("view--hidden");
 		});
 	}
 
-	revealOnScroll(elements) {
+	const revealOnScroll = (elements) => {
 		// Recover the current viewport
 		const viewport = window.innerHeight;
 
@@ -73,73 +56,71 @@ class App extends Component {
 		});
 	}
 
-	render() {
-		return (
-			<BrowserRouter>
-				<Routes>
-					<Route
-						path={"/galerie"}
-						element={
-							<Gallery
-								isMenuOpen={this.state.isMenuOpen}
-								headerRef={this.headerRef}
-								setTabTitle={this.setTabTitle}
-								backToTop={this.backToTop}
-								toggleMenu={this.toggleMenu}
-								closeMenu={this.closeMenu}
-								applyHideClass={this.applyHideClass}
-								revealOnScroll={this.revealOnScroll}
-							/>
-						}
-					/>
-					<Route
-						path={"/portfolio"}
-						element={
-							<Portfolio
-								isMenuOpen={this.state.isMenuOpen}
-								headerRef={this.headerRef}
-								setTabTitle={this.setTabTitle}
-								backToTop={this.backToTop}
-								toggleMenu={this.toggleMenu}
-								closeMenu={this.closeMenu}
-								applyHideClass={this.applyHideClass}
-								revealOnScroll={this.revealOnScroll}
-							/>
-						}
-					/>
-					<Route
-						path={"/"}
-						element={
-							<HomePage
-								isMenuOpen={this.state.isMenuOpen}
-								headerRef={this.headerRef}
-								setTabTitle={this.setTabTitle}
-								backToTop={this.backToTop}
-								toggleMenu={this.toggleMenu}
-								closeMenu={this.closeMenu}
-								applyHideClass={this.applyHideClass}
-								revealOnScroll={this.revealOnScroll}
-							/>
-						}
-					/>
-					<Route
-						path="*"
-						element={
-							<Error404
-								isMenuOpen={this.state.isMenuOpen}
-								headerRef={this.headerRef}
-								setTabTitle={this.setTabTitle}
-								toggleMenu={this.toggleMenu}
-								closeMenu={this.closeMenu}
-								applyHideClass={this.applyHideClass}
-								revealOnScroll={this.revealOnScroll}
-							/>
-						}
-					/>
-				</Routes>
-			</BrowserRouter>
-		);
-	}
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route
+					path={"/galerie"}
+					element={
+						<Gallery
+							isMenuOpen={isMenuOpen}
+							headerRef={headerRef}
+							setTabTitle={setTabTitle}
+							backToTop={backToTop}
+							toggleMenu={toggleMenu}
+							closeMenu={closeMenu}
+							applyHideClass={applyHideClass}
+							revealOnScroll={revealOnScroll}
+						/>
+					}
+				/>
+				<Route
+					path={"/portfolio"}
+					element={
+						<Portfolio
+							isMenuOpen={isMenuOpen}
+							headerRef={headerRef}
+							setTabTitle={setTabTitle}
+							backToTop={backToTop}
+							toggleMenu={toggleMenu}
+							closeMenu={closeMenu}
+							applyHideClass={applyHideClass}
+							revealOnScroll={revealOnScroll}
+						/>
+					}
+				/>
+				<Route
+					path={"/"}
+					element={
+						<HomePage
+							isMenuOpen={isMenuOpen}
+							headerRef={headerRef}
+							setTabTitle={setTabTitle}
+							backToTop={backToTop}
+							toggleMenu={toggleMenu}
+							closeMenu={closeMenu}
+							applyHideClass={applyHideClass}
+							revealOnScroll={revealOnScroll}
+						/>
+					}
+				/>
+				<Route
+					path="*"
+					element={
+						<Error404
+							isMenuOpen={isMenuOpen}
+							headerRef={headerRef}
+							setTabTitle={setTabTitle}
+							toggleMenu={toggleMenu}
+							closeMenu={closeMenu}
+							applyHideClass={applyHideClass}
+							revealOnScroll={revealOnScroll}
+						/>
+					}
+				/>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;

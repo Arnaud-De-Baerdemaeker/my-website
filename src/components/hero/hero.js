@@ -2,100 +2,90 @@
 // Started on July 2020
 // By Arnaud De Baerdemaeker
 
-import React, {Component, createRef} from "react";
+import {useEffect, useRef} from "react";
 
-class Hero extends Component {
-	constructor(props) {
-		super(props);
-		this.backgroundClasses = [
-			"hero__background--1",
-			"hero__background--2",
-			"hero__background--3",
-			"hero__background--4",
-			"hero__background--5"
-		];
-		this.index = 0;
-		this.lastIndex = null;
-		this.slideshow = null;
+const Hero = ({heroContainerClass, heroTitleClass, heroTitleContent, heroBackToHomepage, scrollDownSVG}) => {
+	const backgroundClasses = [
+		"hero__background--1",
+		"hero__background--2",
+		"hero__background--3",
+		"hero__background--4",
+		"hero__background--5"
+	];
+	let index = 0;
+	let lastIndex = null;
+	let slideshow = null;
+	const location = window.location.pathname;
+	const heroContainerRef = useRef();
+	const heroBackFilter = useRef();
 
-		this.location = window.location.pathname;
-
-		this.heroContainerRef = createRef();
-		this.heroBackFilter = createRef();
-
-		this.scrollImages = this.scrollImages.bind(this);
-		this.handleHeroVisibility = this.handleHeroVisibility.bind(this);
-	}
-
-	scrollImages() {
+	const scrollImages = () => {
 		/*
 			Interval to display the image in order by using an index matching the images in the array.
 			At each iteration, the previous image is replaced with the next one.
 			The condition checks if the end of the array is reached or not, and resets the counters to start over as a loop.
 		*/
-		if(this.location === "/" || this.location === "/galerie" || this.location === "/portfolio") {
-			if(this.index === 4) {
-				this.lastIndex = 4;
-				this.index = -1;
+		if(location === "/" || location === "/galerie" || location === "/portfolio") {
+			if(index === 4) {
+				lastIndex = 4;
+				index = -1;
 			}
 			else {
-				this.lastIndex = this.index;
+				lastIndex = index;
 			}
 
-			this.index++;
-			this.heroContainerRef.current.classList.replace(this.backgroundClasses[this.lastIndex], this.backgroundClasses[this.index]);
+			index++;
+			heroContainerRef.current.classList.replace(backgroundClasses[lastIndex], backgroundClasses[index]);
 		}
 		else {
 			return null;
 		}
 	}
 
-	handleHeroVisibility() {
+	const handleHeroVisibility = () => {
 		const viewport = window.innerHeight;
-		const heroPosition = this.heroBackFilter.current.getBoundingClientRect().bottom;
+		const heroPosition = heroBackFilter.current.getBoundingClientRect().bottom;
 
 		if(heroPosition < viewport / 2) {
-			this.heroBackFilter.current.classList.add("hideHeroBackground");
+			heroBackFilter.current.classList.add("hideHeroBackground");
 		}
 		else {
-			this.heroBackFilter.current.classList.remove("hideHeroBackground");
+			heroBackFilter.current.classList.remove("hideHeroBackground");
 		}
 	}
 
-	componentDidMount() {
-		this.slideshow = window.setInterval(() => this.scrollImages(), 10000);
-		window.addEventListener("scroll", this.handleHeroVisibility);
-	}
+	useEffect(() => {
+		slideshow = window.setInterval(() => scrollImages(), 10000);
+		window.addEventListener("scroll", handleHeroVisibility);
 
-	componentWillUnmount() {
-		clearInterval(this.slideshow);
-		window.removeEventListener("scroll", this.handleHeroVisibility);
-	}
+		return () => {
+			clearInterval(slideshow);
+			window.removeEventListener("scroll", handleHeroVisibility);
+		}
+	}, []);
 
-	render() {
-		return (
-			<div className={"hero"}>
+	return (
+		<div className={"hero"}>
+			<div
+				ref={heroContainerRef}
+				className={"hero__container" + (
+					heroContainerClass
+					? heroContainerClass
+					: ""
+				)}
+			>
 				<div
-					ref={this.heroContainerRef}
-					className={"hero__container" + (
-						this.props.heroContainerClass
-						? this.props.heroContainerClass
-						: ""
-					)}
-				>
-					<div
-						ref={this.heroBackFilter}
-						className={"hero__backFilter"}
-					></div>
-				</div>
-				<h2 className={this.props.heroTitleClass}>
-					{this.props.heroTitleContent}
-				</h2>
-				{this.props.heroBackToHomepage ? this.props.heroBackToHomepage : null}
-				{this.props.scrollDownSVG ? this.props.scrollDownSVG : null}
+					ref={heroBackFilter}
+					className={"hero__backFilter"}
+				></div>
 			</div>
-		);
-	}
+			<h2 className={heroTitleClass}>
+				{heroTitleContent}
+			</h2>
+			{heroBackToHomepage ? heroBackToHomepage : null}
+			{scrollDownSVG ? scrollDownSVG : null}
+		</div>
+	);
 }
 
 export default Hero;

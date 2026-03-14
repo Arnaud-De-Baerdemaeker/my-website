@@ -2,60 +2,51 @@
 // Started on July 2020
 // By Arnaud De Baerdemaeker
 
-import React, {Component, createRef} from "react";
+import {useEffect, useRef} from "react";
 
 import CardOverlay from "../cardOverlay/cardOverlay";
 
-class Card extends Component {
-	constructor(props) {
-		super(props);
+const Card = ({cardClick, cardClass, cardContent, cardOverlayContent, cardOverlayTitleClass}) => {
+	const cardRef = useRef();
+	const overlayRef = useRef();
 
-		this.cardRef = createRef();
-		this.overlayRef = createRef();
-
-		this.hoveringIn = this.hoveringIn.bind(this);
-		this.hoveringOut = this.hoveringOut.bind(this);
+	const hoveringIn = () => {
+		overlayRef.current.classList.replace("overlay--hidden", "overlay--visible");
 	}
 
-	hoveringIn() {
-		this.overlayRef.current.classList.replace("overlay--hidden", "overlay--visible");
+	const hoveringOut = () => {
+		overlayRef.current.classList.replace("overlay--visible", "overlay--hidden");
 	}
 
-	hoveringOut() {
-		this.overlayRef.current.classList.replace("overlay--visible", "overlay--hidden");
-	}
-
-	componentDidMount() {
+	useEffect(() => {
 		if("ontouchstart" in window) {
-			this.overlayRef.current.classList.replace("overlay--hidden", "overlay--visible");
+			overlayRef.current.classList.replace("overlay--hidden", "overlay--visible");
 		}
 		else {
-			this.cardRef.current.addEventListener("mouseover", this.hoveringIn);
-			this.cardRef.current.addEventListener("mouseout", this.hoveringOut);
+			cardRef.current.addEventListener("mouseover", hoveringIn);
+			cardRef.current.addEventListener("mouseout", hoveringOut);
 		}
-	}
 
-	componentWillUnmount() {
-		this.cardRef.current.removeEventListener("mouseover", this.hoveringIn);
-		this.cardRef.current.removeEventListener("mouseout", this.hoveringOut);
-	}
+		return () => {
+			cardRef.current.removeEventListener("mouseover", hoveringIn);
+			cardRef.current.removeEventListener("mouseout", hoveringOut);
+		}
+	}, []);
 
-	render() {
-		return(
-			<li
-				ref={this.cardRef}
-				onClick={this.props.cardClick}
-				className={this.props.cardClass}
-			>
-				{this.props.cardContent}
-				<CardOverlay
-					overlayRef={this.overlayRef}
-					overlayContent={this.props.cardOverlayContent}
-					overlayTitleClass={this.props.cardOverlayTitleClass}
-				/>
-			</li>
-		);
-	}
+	return (
+		<li
+			ref={cardRef}
+			onClick={cardClick}
+			className={cardClass}
+		>
+			{cardContent}
+			<CardOverlay
+				overlayRef={overlayRef}
+				overlayContent={cardOverlayContent}
+				overlayTitleClass={cardOverlayTitleClass}
+			/>
+		</li>
+	);
 }
 
 export default Card;

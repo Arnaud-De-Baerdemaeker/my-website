@@ -1,21 +1,14 @@
 /* HEADER */
 .header {
-	@include revealOnLoad;
 	position: fixed;
-	top: 0;
-	z-index: 4;
-	width: 100%;
+	top: 2rem;
+	left: 2rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: rgba(25, 39, 27, 0);
-	clip-path: ellipse(100% 100% at 50% 0%);
-	transition: {
-		property: background-color filter;
-		duration: 1s;
-	}
+	width: calc(100% - 4rem);
 }
 
 .scroll {
-	background-color: rgba(25, 39, 27, 1);
+	// background-color: rgba(25, 39, 27, 1);
 }

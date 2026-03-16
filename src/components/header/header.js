@@ -6,6 +6,7 @@ import {useEffect} from "react";
 import {Link} from "react-router-dom";
 
 import Name from "../name/name";
+import Navigation from "../navigation/navigation";
 import Button from "../button/button";
 import SVG from "../svg/svg";
 
@@ -32,18 +33,11 @@ const Header = ({headerRef, closeMenu, isMenuOpen, toggleMenu}) => {
 			ref={headerRef}
 			className={"header"}
 		>
-			<Name class={"name--header"}>
-				<Link
-					to={"/"}
-					onClick={closeMenu}
-					className={"name__link"}
-				>
-					{"Arnaud"}
-					<br />
-					{"De Baerdemaeker"}
-				</Link>
-			</Name>
-			<Button
+			<Name nameClass={"name--header"} />
+
+			<Navigation />
+
+			{/* <Button
 				alt={
 					isMenuOpen
 					? "Fermer le menu"
@@ -83,7 +77,9 @@ const Header = ({headerRef, closeMenu, isMenuOpen, toggleMenu}) => {
 						/>
 					</g>
 				</SVG>
-			</Button>
+			</Button> */}
+
+
 		</header>
 	);
 }

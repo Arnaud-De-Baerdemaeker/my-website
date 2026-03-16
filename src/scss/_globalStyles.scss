@@ -1,16 +1,29 @@
 /* GLOBAL STYLES */
 html {
 	height: 100%;
-	font-size: 16px;
+	font-size: 10px;
 }
 
 body {
 	height: 100%;
 	margin: 0;
+	padding: 2rem;
 	box-sizing: border-box;
 	font-family: "DM Sans", Arial, Helvetica, sans-serif;
-	background-color: $color-4;
-	color: $color-8;
+	background-color: var(--color-primary-100);
+	color: var(--color-secondary-100);
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	color: var(--color-secondary-100);
+	text-decoration: none;
+	-webkit-tap-highlight-color: transparent;
 }
 
 #root {

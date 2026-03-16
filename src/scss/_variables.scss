@@ -1,21 +1,23 @@
 // VARIABLES
 
-// Colors
-$half-transparent: rgba(0, 0, 0, 0.5);
-$color-1: rgb(88, 129, 87);
-$color-2: rgb(58, 90, 64);
-$color-3: rgb(25, 39, 27);
-$color-4: rgb(16, 26, 18);
-$color-5: rgb(150, 150, 150);
-$color-6: rgb(180, 180, 180);
-$color-7: rgb(182, 206, 186);
-$color-8: rgb(249, 246, 238);
+:root {
+	// Colors
+	--color-primary-100: rgb(22, 39, 25);
+	--color-primary-200: rgb(34, 60, 38);
+	--color-primary-300: rgb(68, 121, 78);
+	--color-primary-400: rgb(91, 162, 104);
 
-// Fonts
-$bebas-neue: "Bebas Neue", Arial, Helvetica, sans-serif;
-$jost: "Jost", Arial, Helvetica, sans-serif;
-$dm-sans: "DM Sans", Arial, Helvetica, sans-serif;
-$economica : "Economica", Arial, Helvetica, sans-serif;
+	--color-secondary-100: rgb(246, 242, 230);
+
+	--color-rgb-black: 0, 0, 0;
+
+	// Fonts
+	--krona-one: "Krona One", sans-serif;
+	--raleway: "Raleway", sans-serif;
+	$jost: "Jost", Arial, Helvetica, sans-serif;
+	$economica : "Economica", Arial, Helvetica, sans-serif;
+}
+
 
 // Orientations
 $portrait: "(orientation: portrait)";

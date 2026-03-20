@@ -2,20 +2,21 @@
 // Started on July 2020
 // By Arnaud De Baerdemaeker
 
-@import
-	"scss/variables",
+@use "scss/variables";
 	// "scss/mixins",
 	// "scss/keyframes",
-	"scss/globalStyles",
-	"pages/homepage/homepage",
+@use "scss/globalStyles";
+@use "pages/homepage/homepage";
 	// "pages/galleryPage/gallery",
 	// "pages/portfolio/portfolio",
-	"components/header/header",
-	"components/name/name",
+@use "components/header/header";
+@use "components/name/name";
 	// "components/button/button",
-	"components/svg/svg",
-	"components/navigation/navigation"
-	// "components/hero/hero",
+@use "components/svg/svg";
+@use "components/navigation/navigation";
+@use "components/hero/hero";
+@use "components/mainTitle/mainTitle";
+@use "components/scrollDown/scrollDown";
 	// "components/card/card",
 	// "components/fetchStatus/fetchStatus",
 	// "components/cardOverlay/cardOverlay",

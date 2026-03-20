@@ -1,4 +1,5 @@
 /* GLOBAL STYLES */
+
 html {
 	height: 100%;
 	font-size: 10px;
@@ -6,28 +7,48 @@ html {
 
 body {
 	height: 100%;
-	margin: 0;
-	padding: 2rem;
+	padding: 0;
 	box-sizing: border-box;
-	font-family: "DM Sans", Arial, Helvetica, sans-serif;
-	background-color: var(--color-primary-100);
-	color: var(--color-secondary-100);
+	font-family: var(--nunito);
+	background-color: rgb(var(--color-primary-100));
+	color: rgb(var(--color-secondary-100));
+}
+
+body, h1, h2, h3, ul, p {
+	margin: unset;
+}
+
+h2, h3 {
+	font-family: var(--architects-daughter);
 }
 
 ul {
 	list-style: none;
 	padding: 0;
-	margin: 0;
 }
 
 a {
-	color: var(--color-secondary-100);
+	color: rgb(var(--color-secondary-100));
 	text-decoration: none;
 	-webkit-tap-highlight-color: transparent;
 }
 
 #root {
 	height: 100%;
+}
+
+.structure {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 20rem;
+}
+
+.container {
+	display: flex;
+	justify-self: center;
+	width: 100%;
+	max-width: 172rem;
 }
 
 .view {

@@ -1,4 +1,7 @@
 /* MENU */
+
+@use "../../scss/variables" as variables;
+
 .menu {
 	&__list {
 		display: flex;
@@ -14,7 +17,7 @@
 		&.active {
 			.menu__activeEffect {
 				path {
-					fill: var(--color-primary-400);
+					fill: rgb(var(--color-primary-400));
 				}
 			}
 		}
@@ -48,19 +51,19 @@
 		right: -2rem;
 		z-index: -3;
 		height: 8rem;
-		filter: drop-shadow(0 1rem 1.5rem rgba(var(--color-rgb-black), 0.5));
+		filter: drop-shadow(0 1rem 1.5rem rgba(var(--color-black), 0.5));
 
 		path {
-			fill: var(--color-primary-200);
+			fill: rgb(var(--color-primary-200));
 		}
 	}
 }
 
 
 @media screen {
-	@media #{$hover} {
+	@media #{variables.$hover} {
 		.menu__link:hover .menu__hoverEffect path {
-			fill: var(--color-secondary-100);
+			fill: rgb(var(--color-secondary-100));
 		}
 	}
 }

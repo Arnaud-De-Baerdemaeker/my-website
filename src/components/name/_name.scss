@@ -58,7 +58,7 @@
 		width: 7rem;
 
 		path {
-			fill: var(--color-secondary-100);
+			fill: rgb(var(--color-secondary-100));
 		}
 	}
 
@@ -73,10 +73,10 @@
 		left: -6rem;
 		z-index: -1;
 		height: 8rem;
-		filter: drop-shadow(0 10px 15px rgba(var(--color-rgb-black), 0.5));
+		filter: drop-shadow(0 10px 15px rgba(var(--color-black), 0.5));
 
 		path {
-			fill: var(--color-primary-200);
+			fill: rgb(var(--color-primary-200));
 		}
 	}
 }

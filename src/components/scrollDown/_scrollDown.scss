@@ -1,0 +1,19 @@
+/* SCROLL DOWN */
+
+.scrollDown {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+
+    &__svg {
+        width: 3rem;
+    }
+
+    &__icon {
+        fill: none;
+        stroke-width: 0.2rem;
+        stroke: rgb(var(--color-secondary-100));
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+}

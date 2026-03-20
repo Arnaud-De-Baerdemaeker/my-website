@@ -1,0 +1,66 @@
+/* MAIN TITLE */
+
+.mainTitle {
+	position: relative;
+	left: 10rem;
+	display: flex;
+	flex-direction: column;
+	row-gap: 12rem;
+	width: 70rem;
+
+	&--homepage {}
+
+	&__group {
+		&--start {}
+
+		&--end {
+			text-align: end;
+		}
+	}
+
+	&__title {
+		display: block;
+		font-family: var(--jost);
+		font-size: 9rem;
+		line-height: 10rem;
+		letter-spacing: 8%;
+
+		&--normal {
+			font-weight: 300;
+		}
+
+		&--bold {
+			font-weight: 700;
+		}
+	}
+
+	&__ampersand {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: -1;
+		display: block;
+		width: 50rem;
+		fill: rgb(var(--color-primary-500));
+		fill-opacity: 0.6;
+		transform: translate(-50%, -50%);
+
+		// @media screen {
+			// @media #{$portrait} {
+				// @include fluidContent(font-size, 18.75rem, 41.875, 18.75, 100vw);
+
+				// @media #{$mq-w1080-up} {
+					// font-size: 41.875rem;
+				// }
+			// }
+
+			// @media #{$landscape} {
+				// @include fluidContent(font-size, 15rem, 46.875, 15, 100vh);
+
+				// @media #{$mq-h1080-up} {
+					// font-size: 46.875rem;
+				// }
+			// }
+		// }
+	}
+}

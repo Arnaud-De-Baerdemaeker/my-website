@@ -2,7 +2,7 @@
 // Started on July 2020
 // By Arnaud De Baerdemaeker
 
-import {useRef, useState} from "react";
+import {useState, useRef, createContext} from "react";
 import {BrowserRouter, Routes, Route} from "react-router";
 
 import HomePage from "./pages/homepage/homepage";
@@ -11,7 +11,6 @@ import Portfolio from "./pages/portfolio/portfolio";
 import Error404 from "./pages/error404/error404";
 
 const App = () => {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	// let elements = null;
 	const headerRef = useRef();
 
@@ -22,16 +21,6 @@ const App = () => {
 	const backToTop = () => {
 		if (window.scrollY !== 0) {
 			window.scrollTo(0, 0);
-		}
-	}
-
-	const toggleMenu = () => {
-		setIsMenuOpen(!isMenuOpen);
-	}
-
-	const closeMenu = () => {
-		if(isMenuOpen === true) {
-			setIsMenuOpen(false);
 		}
 	}
 
@@ -63,12 +52,9 @@ const App = () => {
 					path={"/galerie"}
 					element={
 						<Gallery
-							isMenuOpen={isMenuOpen}
 							headerRef={headerRef}
 							setTabTitle={setTabTitle}
 							backToTop={backToTop}
-							toggleMenu={toggleMenu}
-							closeMenu={closeMenu}
 							applyHideClass={applyHideClass}
 							revealOnScroll={revealOnScroll}
 						/>
@@ -78,12 +64,9 @@ const App = () => {
 					path={"/portfolio"}
 					element={
 						<Portfolio
-							isMenuOpen={isMenuOpen}
 							headerRef={headerRef}
 							setTabTitle={setTabTitle}
 							backToTop={backToTop}
-							toggleMenu={toggleMenu}
-							closeMenu={closeMenu}
 							applyHideClass={applyHideClass}
 							revealOnScroll={revealOnScroll}
 						/>
@@ -93,12 +76,9 @@ const App = () => {
 					path={"/"}
 					element={
 						<HomePage
-							isMenuOpen={isMenuOpen}
 							headerRef={headerRef}
 							setTabTitle={setTabTitle}
 							backToTop={backToTop}
-							toggleMenu={toggleMenu}
-							closeMenu={closeMenu}
 							applyHideClass={applyHideClass}
 							revealOnScroll={revealOnScroll}
 						/>
@@ -108,11 +88,8 @@ const App = () => {
 					path="*"
 					element={
 						<Error404
-							isMenuOpen={isMenuOpen}
 							headerRef={headerRef}
 							setTabTitle={setTabTitle}
-							toggleMenu={toggleMenu}
-							closeMenu={closeMenu}
 							applyHideClass={applyHideClass}
 							revealOnScroll={revealOnScroll}
 						/>

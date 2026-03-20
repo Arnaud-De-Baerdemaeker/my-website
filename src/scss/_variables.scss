@@ -2,20 +2,22 @@
 
 :root {
 	// Colors
-	--color-primary-100: rgb(22, 39, 25);
-	--color-primary-200: rgb(34, 60, 38);
-	--color-primary-300: rgb(68, 121, 78);
-	--color-primary-400: rgb(91, 162, 104);
+	--color-primary-100: 22, 39, 25;
+	--color-primary-200: 34, 60, 38;
+	--color-primary-300: 68, 121, 78;
+	--color-primary-400: 91, 162, 104;
+	--color-primary-500: 182, 206, 186;
 
-	--color-secondary-100: rgb(246, 242, 230);
+	--color-secondary-100: 246, 242, 230;
 
-	--color-rgb-black: 0, 0, 0;
+	--color-black: 0, 0, 0;
 
 	// Fonts
+	--nunito: "Nunito", sans-serif;
 	--krona-one: "Krona One", sans-serif;
 	--raleway: "Raleway", sans-serif;
-	$jost: "Jost", Arial, Helvetica, sans-serif;
-	$economica : "Economica", Arial, Helvetica, sans-serif;
+	--jost: "Jost", sans-serif;
+	--architects-daughter: "Architects Daughter", sans-serif;
 }
 
 

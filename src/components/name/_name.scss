@@ -28,7 +28,9 @@
 	}
 
 	&--footer {
-		// font-family: $bebas-neue;
+		font-family: var(--krona-one);
+		font-size: 10rem;
+		text-transform: uppercase;
 		// color: $color-8;
 		// letter-spacing: 0.125rem;
 		// word-spacing: 0.3125rem;

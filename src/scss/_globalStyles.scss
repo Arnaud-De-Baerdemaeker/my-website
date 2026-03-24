@@ -1,14 +1,18 @@
 /* GLOBAL STYLES */
 
+* {
+	box-sizing: border-box;
+}
+
 html {
 	height: 100%;
 	font-size: 10px;
+	scroll-behavior: smooth;
 }
 
 body {
 	height: 100%;
 	padding: 0;
-	box-sizing: border-box;
 	font-family: var(--nunito);
 	background-color: rgb(var(--color-primary-100));
 	color: rgb(var(--color-secondary-100));

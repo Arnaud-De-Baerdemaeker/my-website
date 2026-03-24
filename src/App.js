@@ -53,10 +53,10 @@ const App = () => {
 					element={
 						<Gallery
 							headerRef={headerRef}
-							setTabTitle={setTabTitle}
-							backToTop={backToTop}
-							applyHideClass={applyHideClass}
-							revealOnScroll={revealOnScroll}
+							// setTabTitle={setTabTitle}
+							// backToTop={backToTop}
+							// applyHideClass={applyHideClass}
+							// revealOnScroll={revealOnScroll}
 						/>
 					}
 				/>
@@ -65,10 +65,10 @@ const App = () => {
 					element={
 						<Portfolio
 							headerRef={headerRef}
-							setTabTitle={setTabTitle}
-							backToTop={backToTop}
-							applyHideClass={applyHideClass}
-							revealOnScroll={revealOnScroll}
+							// setTabTitle={setTabTitle}
+							// backToTop={backToTop}
+							// applyHideClass={applyHideClass}
+							// revealOnScroll={revealOnScroll}
 						/>
 					}
 				/>
@@ -77,10 +77,10 @@ const App = () => {
 					element={
 						<HomePage
 							headerRef={headerRef}
-							setTabTitle={setTabTitle}
-							backToTop={backToTop}
-							applyHideClass={applyHideClass}
-							revealOnScroll={revealOnScroll}
+							// setTabTitle={setTabTitle}
+							// backToTop={backToTop}
+							// applyHideClass={applyHideClass}
+							// revealOnScroll={revealOnScroll}
 						/>
 					}
 				/>
@@ -89,9 +89,9 @@ const App = () => {
 					element={
 						<Error404
 							headerRef={headerRef}
-							setTabTitle={setTabTitle}
-							applyHideClass={applyHideClass}
-							revealOnScroll={revealOnScroll}
+							// setTabTitle={setTabTitle}
+							// applyHideClass={applyHideClass}
+							// revealOnScroll={revealOnScroll}
 						/>
 					}
 				/>

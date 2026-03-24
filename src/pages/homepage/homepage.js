@@ -17,8 +17,8 @@ const HomePage = ({headerRef, setTabTitle, backToTop, applyHideClass, revealOnSc
 	const tabTitle = "Accueil | Arnaud De Baerdemaeker";
 
 	useEffect(() => {
-		setTabTitle(tabTitle);
-		backToTop();
+		// setTabTitle(tabTitle);
+		// backToTop();
 
 		// const elementsToHide = document.querySelectorAll(".svg__background, .homepage__introduction, .homepage__title, .homepage__paragraph");
 

@@ -186,7 +186,7 @@ const HomePage = ({headerRef, setTabTitle, backToTop, applyHideClass, revealOnSc
 						<div className={"homepage__section"}>
 							<h3
 								className={"homepage__title"}
-								dataTitle={"Le développement web"}
+								data-title={"Le développement web"}
 							>
 								{"Le développement web"}
 							</h3>
@@ -201,7 +201,7 @@ const HomePage = ({headerRef, setTabTitle, backToTop, applyHideClass, revealOnSc
 						<div className={"homepage__section"}>
 							<h3
 								className={"homepage__title"}
-								dataTitle={"La photographie"}
+								data-title={"La photographie"}
 							>
 								{"La photographie"}
 							</h3>
@@ -335,10 +335,10 @@ const HomePage = ({headerRef, setTabTitle, backToTop, applyHideClass, revealOnSc
 				</div>
 			</main>
 
-			{/* <Footer
-				applyHideClass={applyHideClass}
-				revealOnScroll={revealOnScroll}
-			/> */}
+			<Footer
+				// applyHideClass={applyHideClass}
+				// revealOnScroll={revealOnScroll}
+			/>
 		</div>
 	);
 }

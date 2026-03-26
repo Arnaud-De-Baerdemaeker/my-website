@@ -2,20 +2,14 @@
 // Started on July 2020
 // By Arnaud De Baerdemaeker
 
-import SVG from "../svg/svg";
 import ScrollDown from "../scrollDown/scrollDown";
 
-const Hero = ({svgViewBox, svgClass, svgContent, scrollDown, children}) => {
+const Hero = ({svgContent, scrollDown, children}) => {
 	return (
 		<div className={"hero"}>
 			{children}
-			
-			<SVG
-				svgViewBox={svgViewBox}
-				svgClass={svgClass}
-			>
-				{svgContent}
-			</SVG>
+
+			{svgContent}
 
 			{scrollDown ? <ScrollDown /> : null}
 		</div>

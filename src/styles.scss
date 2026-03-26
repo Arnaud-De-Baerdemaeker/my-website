@@ -7,17 +7,17 @@
 	// "scss/keyframes",
 @use "scss/globalStyles";
 @use "pages/homepage/homepage";
-	// "pages/galleryPage/gallery",
+@use "pages/galleryPage/gallery";
 	// "pages/portfolio/portfolio",
 @use "components/header/header";
 @use "components/name/name";
-	// "components/button/button",
+@use "components/button/button";
 @use "components/svg/svg";
 @use "components/navigation/navigation";
 @use "components/hero/hero";
 @use "components/mainTitle/mainTitle";
 @use "components/scrollDown/scrollDown";
-	// "components/card/card",
+@use "components/card/card";
 	// "components/fetchStatus/fetchStatus",
 	// "components/cardOverlay/cardOverlay",
 	// "components/modal/modal",

@@ -4,7 +4,7 @@
 
 import {createFlickr} from "flickr-sdk";
 
-import {useState, useEffect} from "react";
+import {useState, useEffect, useRef} from "react";
 
 import Header from "../../components/header/header";
 import Navigation from "../../components/navigation/navigation";
@@ -19,26 +19,43 @@ import Modal from "../../components/modal/modal";
 import Footer from "../../components/footer/footer";
 
 const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, closeMenu, applyHideClass, revealOnScroll}) => {
+	const [activeTab, setActiveTab] = useState("traditional");
 	const [photos, setPhotos] = useState(null);
 	const [fetchLoading, setFetchLoading] = useState(true);
 	const [fetchFailed, setFetchFailed] = useState(false);
-	const [bigPicture, setBigPicture] = useState(null);
-	const [modalOpen, setModalOpen] = useState(false);
+	// const [bigPicture, setBigPicture] = useState(null);
+	// const [modalOpen, setModalOpen] = useState(false);
 
-	const body = document.querySelector("body");
+	// const body = document.querySelector("body");
 	const tabTitle = "Galerie | Arnaud De Baerdemaeker";
 	// let photos = null;
-	let tags = null;
-	let timeout = null;
+	// let tags = null;
+	// let timeout = null;
+	const switchesRef = useRef();
 
-	const getPhotos = async () => {
+	const switchTab = (event) => {
+		console.log(event.target);
+
+		const targetTab = event.target;
+
+		setActiveTab(targetTab.name);
+
+		const previousActiveTab = switchesRef.current.querySelector(".button__switch.active");
+		previousActiveTab.classList.remove("active");
+
+		if(!targetTab.classList.contains("active")) {
+			targetTab.classList.add("active");
+		}
+	}
+
+	const getPhotos = async (photoset_id) => {
 		fetchFailed === true ?? setFetchFailed(false);
 
 		const {flickr} = createFlickr(process.env.REACT_APP_API_KEY);
 
 		try {
 			const request = await flickr("flickr.photosets.getPhotos", {
-				photoset_id: process.env.REACT_APP_PHOTOSET_ID,
+				photoset_id: photoset_id,
 				extras: "url_z",
 				per_page: 12,
 				page: 1
@@ -97,7 +114,15 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 	useEffect(() => {
 		// setTabTitle(tabTitle);
 		// backToTop();
-		// getPhotos();
+
+		console.log(switchesRef.current);
+
+		if(activeTab === "traditional") {
+			getPhotos(process.env.REACT_APP_TRADITIONAL_PHOTOSET_ID);
+		}
+		else if(activeTab === "virtual") {
+			getPhotos(process.env.REACT_APP_VIRTUAL_PHOTOSET_ID);
+		}
 
 		console.log(photos);
 
@@ -106,7 +131,7 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 			// removeScrollLock();
 			// clearTimeout(timeout);
 		// };
-	}, []);
+	}, [activeTab]);
 
 	// useEffect(() => {
 	// 	const elementsToHide = document.querySelectorAll(".card--photo, .fetchStatus");
@@ -144,18 +169,18 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 			</Hero>
 
 			<main className={"gallery container"}>
-				<div className={"gallery__switches"}>
+				<div ref={switchesRef} className={"gallery__switches"}>
 					<Button
-						// buttonFunction={""}
-						// buttonAlt={""}
+						buttonId={"traditional"}
+						buttonAction={switchTab}
 						buttonClass={"button button__switch active"}
 					>
 						{"Traditionnelle"}
 					</Button>
 
 					<Button
-						// buttonFunction={""}
-						// buttonAlt={""}
+						buttonId={"virtual"}
+						buttonAction={switchTab}
 						buttonClass={"button button__switch"}
 					>
 						{"Virtuelle"}

@@ -2,12 +2,12 @@
 // Started on July 2020
 // By Arnaud De Baerdemaeker
 
-const Button = ({buttonFunction, buttonAlt, buttonClass, children}) => {
+const Button = ({buttonId, buttonAction, buttonClass, children}) => {
 	return (
 		<button
 			type={"button"}
-			onClick={buttonFunction && buttonFunction}
-			alt={buttonAlt}
+			id={buttonId}
+			onClick={buttonAction}
 			className={buttonClass}
 		>
 			{children}

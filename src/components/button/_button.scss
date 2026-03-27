@@ -1,26 +1,35 @@
 /* BUTTON */
 .button {
 	position: relative;
-	margin: {
-		top: 0;
-		bottom: 0;
-		left: 0;
-	}
-	padding: 0;
+	display: flex;
+	justify-content: center;
+	font-family: var(--raleway);
+	font-weight: 600;
+	color: var(--color-secondary-100);
+	margin: unset;
+	padding: unset;
 	background-color: unset;
 	border: unset;
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
 	outline: none;
 
+	&__switch, &__loadMore {
+		&:hover {
+			background-color: rgba(var(--color-primary-400), 0.5);
+		}
+
+		&:active {
+			background-color: rgb(var(--color-secondary-100));
+			color: rgb(var(--color-primary-400));
+			box-shadow: unset;
+			transform: scale(0.95);
+		}
+	}
+
 	&__switch {
-		display: flex;
-		justify-content: center;
 		width: 19.5rem;
-		font-weight: var(--raleway);
 		font-size: 2.2rem;
-		font-weight: 600;
-		color: var(--color-secondary-100);
 		padding: 2.5rem;
 
 		&:first-child {
@@ -40,17 +49,22 @@
 		}
 
 		&:hover {
-			background-color: rgba(var(--color-primary-400), 0.5);
 			box-shadow: 0 1rem 3rem 0 rgba(var(--color-black), 0.5);
 		}
 
 		&:focus {}
+	}
 
-		&:active {
-			background-color: rgb(var(--color-secondary-100));
-			color: rgb(var(--color-primary-400));
-			box-shadow: unset;
-			transform: scale(0.95);
+	&__loadMore {
+		font-size: 2rem;
+		padding: 2rem;
+
+		&:hover, &:active {
+			border-radius: 6.4rem;
+		}
+
+		&:hover {
+			box-shadow: 0 1rem 2rem 0 rgba(var(--color-black), 0.5);
 		}
 	}
 

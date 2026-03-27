@@ -2,11 +2,14 @@
 // Started on July 2020
 // By Arnaud De Baerdemaeker
 
-const Button = ({buttonId, buttonAction, buttonClass, children}) => {
+const Button = ({buttonId, buttonRef, buttonPhotosetId, buttonCurrentPage, buttonAction, buttonClass, children}) => {
 	return (
 		<button
 			type={"button"}
 			id={buttonId}
+			ref={buttonRef}
+			data-photoset-id={buttonPhotosetId}
+			data-current-page={buttonCurrentPage}
 			onClick={buttonAction}
 			className={buttonClass}
 		>

@@ -19,8 +19,17 @@ import Modal from "../../components/modal/modal";
 import Footer from "../../components/footer/footer";
 
 const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, closeMenu, applyHideClass, revealOnScroll}) => {
-	const [activeTab, setActiveTab] = useState("traditional");
-	const [photos, setPhotos] = useState(null);
+	const [activeTab, setActiveTab] = useState({
+		name: "traditional",
+		id: "72177720303779286"
+	});
+	const [photos, setPhotos] = useState({
+		page: 1,
+		pages: null,
+		total: null,
+		set: null
+	});
+	const [firstLoad, setFirstLoad] = useState(true);
 	const [fetchLoading, setFetchLoading] = useState(true);
 	const [fetchFailed, setFetchFailed] = useState(false);
 	// const [bigPicture, setBigPicture] = useState(null);
@@ -32,23 +41,9 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 	// let tags = null;
 	// let timeout = null;
 	const switchesRef = useRef();
+	const loadMoreButtonRef = useRef();
 
-	const switchTab = (event) => {
-		console.log(event.target);
-
-		const targetTab = event.target;
-
-		setActiveTab(targetTab.name);
-
-		const previousActiveTab = switchesRef.current.querySelector(".button__switch.active");
-		previousActiveTab.classList.remove("active");
-
-		if(!targetTab.classList.contains("active")) {
-			targetTab.classList.add("active");
-		}
-	}
-
-	const getPhotos = async (photoset_id) => {
+	const getPhotos = async (photoset_id, page) => {
 		fetchFailed === true ?? setFetchFailed(false);
 
 		const {flickr} = createFlickr(process.env.REACT_APP_API_KEY);
@@ -58,13 +53,29 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 				photoset_id: photoset_id,
 				extras: "url_z",
 				per_page: 12,
-				page: 1
+				page: page
 			});
 
-			console.log(request);
+			if(firstLoad) {
+				setPhotos({
+					page: request.photoset.page,
+					pages: request.photoset.pages,
+					total: request.photoset.total,
+					set: request.photoset.photo
+				});
+			}
+			else {
+				setPhotos(prevState => ({
+					page: request.photoset.page,
+					pages: request.photoset.pages,
+					total: request.photoset.total,
+					set: [...(prevState.set || []), ...request.photoset.photo]
+				}));
+			}
 
-			setPhotos(request.photoset.photo);
 			setFetchLoading(false);
+
+			console.log(photos)
 		}
 		catch (error) {
 			console.log(error);
@@ -72,6 +83,40 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 			setFetchFailed(true);
 			setFetchLoading(false);
 		}
+	}
+
+	const switchTab = (event) => {
+		const targetTab = event.target;
+		const tabName = targetTab.id;
+		const tabPhotosetId = targetTab.getAttribute("data-photoset-id");
+
+		setFirstLoad(true);
+		setPhotos(prevState => ({
+			...prevState,
+			page: 1
+		}));
+		setActiveTab({
+			name: tabName,
+			id: tabPhotosetId
+		});
+		setFetchLoading(true);
+
+		const previousActiveTab = switchesRef.current.querySelector(".button__switch.active");
+		previousActiveTab.classList.remove("active");
+
+		if(!targetTab.classList.contains("active")) {
+			targetTab.classList.add("active");
+		}
+	}
+
+	const loadMore = () => {
+		const loadMoreButton = loadMoreButtonRef.current;
+		const nextPage = parseInt(loadMoreButton.getAttribute("data-current-page")) + 1;
+
+		// console.log(nextPage);
+
+		setFetchLoading(true);
+		getPhotos(activeTab.id, nextPage);
 	}
 
 	// const toggleModal = () => {
@@ -115,16 +160,14 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 		// setTabTitle(tabTitle);
 		// backToTop();
 
-		console.log(switchesRef.current);
-
-		if(activeTab === "traditional") {
-			getPhotos(process.env.REACT_APP_TRADITIONAL_PHOTOSET_ID);
+		if(activeTab.name === "traditional") {
+			getPhotos(activeTab.id, photos.page);
 		}
-		else if(activeTab === "virtual") {
-			getPhotos(process.env.REACT_APP_VIRTUAL_PHOTOSET_ID);
+		else if(activeTab.name === "virtual") {
+			getPhotos(activeTab.id, photos.page);
 		}
 
-		console.log(photos);
+		setFirstLoad(false);
 
 		// return () => {
 			// window.removeEventListener("scroll", () => {});
@@ -169,9 +212,10 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 			</Hero>
 
 			<main className={"gallery container"}>
-				<div ref={switchesRef} className={"gallery__switches"}>
+				<div ref={switchesRef} className={"gallery__buttonBackground"}>
 					<Button
 						buttonId={"traditional"}
+						buttonPhotosetId={"72177720303779286"}
 						buttonAction={switchTab}
 						buttonClass={"button button__switch active"}
 					>
@@ -180,6 +224,7 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 
 					<Button
 						buttonId={"virtual"}
+						buttonPhotosetId={"72177720318552607"}
 						buttonAction={switchTab}
 						buttonClass={"button button__switch"}
 					>
@@ -188,8 +233,9 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 				</div>
 
 				<div className={"gallery__grid"}>
-					{photos ? photos.map(photo => (
+					{photos.set ? photos.set.map(photo => (
 						<Card
+							key={photo.id}
 							cardPhotoId={photo.id}
 							cardPhotoUrl={photo.url_z}
 							cardClass={"card"}
@@ -200,6 +246,20 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 						/>
 					)}
 				</div>
+
+				{(photos.pages > 1 && photos.page < photos.pages) && (
+					<div className={"gallery__buttonBackground"}>
+						<Button
+							buttonId={null}
+							buttonRef={loadMoreButtonRef}
+							buttonCurrentPage={photos.page}
+							buttonAction={loadMore}
+							buttonClass={"button button__loadMore"}
+						>
+							{"Charger plus"}
+						</Button>
+					</div>
+				)}
 			</main>
 
 			<Footer

@@ -15,7 +15,7 @@
 	// 	left: 1.25rem;
 	// }
 
-	&__switches {
+	&__buttonBackground {
 		display: flex;
 		align-items: center;
 		column-gap: 2rem;
@@ -23,14 +23,16 @@
 		background-color: rgb(var(--color-primary-200));
 		border-radius: 9.6rem;
 
-		&:before {
-			content: "";
-			display: flex;
-			order: 2;
-			width: 1.4rem;
-			height: 1.4rem;
-			border-radius: 1.4rem;
-			background-color: rgb(var(--color-secondary-100));
+		&:has(.button + .button) {
+			&:before {
+				content: "";
+				display: flex;
+				order: 2;
+				width: 1.4rem;
+				height: 1.4rem;
+				border-radius: 1.4rem;
+				background-color: rgb(var(--color-secondary-100));
+			}
 		}
 	}
 

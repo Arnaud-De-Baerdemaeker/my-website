@@ -14,13 +14,17 @@ const App = () => {
 	// let elements = null;
 	const headerRef = useRef();
 
-	const setTabTitle = (title) => {
+	const setDocumentTitle = (title) => {
 		document.title = title;
 	}
 
-	const backToTop = () => {
+	const setScrollToTop = () => {
 		if (window.scrollY !== 0) {
-			window.scrollTo(0, 0);
+			window.scrollTo({
+				top: 0,
+				left: 0,
+				behavior: "instant"
+			});
 		}
 	}
 
@@ -53,8 +57,8 @@ const App = () => {
 					element={
 						<Gallery
 							headerRef={headerRef}
-							// setTabTitle={setTabTitle}
-							// backToTop={backToTop}
+							setDocumentTitle={setDocumentTitle}
+							setScrollToTop={setScrollToTop}
 							// applyHideClass={applyHideClass}
 							// revealOnScroll={revealOnScroll}
 						/>
@@ -65,8 +69,8 @@ const App = () => {
 					element={
 						<Portfolio
 							headerRef={headerRef}
-							// setTabTitle={setTabTitle}
-							// backToTop={backToTop}
+							setDocumentTitle={setDocumentTitle}
+							setScrollToTop={setScrollToTop}
 							// applyHideClass={applyHideClass}
 							// revealOnScroll={revealOnScroll}
 						/>
@@ -77,8 +81,8 @@ const App = () => {
 					element={
 						<HomePage
 							headerRef={headerRef}
-							// setTabTitle={setTabTitle}
-							// backToTop={backToTop}
+							setDocumentTitle={setDocumentTitle}
+							setScrollToTop={setScrollToTop}
 							// applyHideClass={applyHideClass}
 							// revealOnScroll={revealOnScroll}
 						/>
@@ -89,7 +93,7 @@ const App = () => {
 					element={
 						<Error404
 							headerRef={headerRef}
-							// setTabTitle={setTabTitle}
+							setDocumentTitle={setDocumentTitle}
 							// applyHideClass={applyHideClass}
 							// revealOnScroll={revealOnScroll}
 						/>

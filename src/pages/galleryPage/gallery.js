@@ -7,18 +7,16 @@ import {createFlickr} from "flickr-sdk";
 import {useState, useEffect, useRef} from "react";
 
 import Header from "../../components/header/header";
-import Navigation from "../../components/navigation/navigation";
 import Hero from "../../components/hero/hero";
 import SVGGalleryHero from "../../components/svg/svgGalleryHero";
 import MainTitle from "../../components/mainTitle/mainTitle";
 import Button from "../../components/button/button";
-import SVG from "../../components/svg/svg";
 import FetchStatus from "../../components/fetchStatus/fetchStatus";
 import Card from "../../components/card/card";
 import Modal from "../../components/modal/modal";
 import Footer from "../../components/footer/footer";
 
-const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, closeMenu, applyHideClass, revealOnScroll}) => {
+const Gallery = ({isMenuOpen, headerRef, setDocumentTitle, setScrollToTop, toggleMenu, closeMenu, applyHideClass, revealOnScroll}) => {
 	const [activeTab, setActiveTab] = useState({
 		name: "traditional",
 		id: "72177720303779286"
@@ -36,7 +34,7 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 	// const [modalOpen, setModalOpen] = useState(false);
 
 	// const body = document.querySelector("body");
-	const tabTitle = "Galerie | Arnaud De Baerdemaeker";
+	const documentTitle = "Galerie | Arnaud De Baerdemaeker";
 	// let photos = null;
 	// let tags = null;
 	// let timeout = null;
@@ -157,9 +155,11 @@ const Gallery = ({isMenuOpen, headerRef, setTabTitle, backToTop, toggleMenu, clo
 	// }
 
 	useEffect(() => {
-		// setTabTitle(tabTitle);
-		// backToTop();
+		setDocumentTitle(documentTitle);
+		setScrollToTop();
+	}, []);
 
+	useEffect(() => {
 		if(activeTab.name === "traditional") {
 			getPhotos(activeTab.id, photos.page);
 		}
